@@ -1,0 +1,29 @@
+.caja-verde-formulario {
+    background-color: #9acb9e;
+    border-radius: 35px;
+    padding: 30px 40px;
+}
+
+.label-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+}
+
+.input-estilo, .textarea-estilo {
+    background-color: #e2f1e4 !important;
+    border: none !important;
+    border-radius: 25px !important;
+    box-shadow: none !important;
+}
+
+.btn-verde-suave {
+    background-color: #e2f1e4 !important;
+    color: #1b261b !important;
+    font-family: 'Caveat', cursive !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    border: 1px solid #7ea882 !important;
+    border-radius: 20px !important;
+}

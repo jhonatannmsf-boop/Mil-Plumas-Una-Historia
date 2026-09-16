@@ -1,0 +1,19 @@
+.caja-detalle-izq {
+    background-color: #9acb9e;
+    border-radius: 35px;
+    padding: 25px;
+}
+
+.linea-tiempo-caja {
+    background-color: #9acb9e;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.item-linea-tiempo {
+    background-color: #e2f1e4;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    font-weight: 700;
+}

@@ -1,0 +1,13 @@
+.barra-editor {
+    background-color: #9acb9e;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-weight: 700;
+}
+
+.caja-editor {
+    background-color: #e2f1e4;
+    border-radius: 30px;
+    padding: 20px;
+    min-height: 320px;
+}

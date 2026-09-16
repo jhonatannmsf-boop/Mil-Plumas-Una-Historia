@@ -1,0 +1,12 @@
+.pasos-container {
+    background-color: #b9d7b3;
+    padding: 25px;
+    border-radius: 45px;
+}
+
+.paso-texto {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b;
+}

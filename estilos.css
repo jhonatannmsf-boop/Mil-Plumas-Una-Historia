@@ -1,0 +1,183 @@
+@import url('https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #d1cca4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.libro-marco {
+    background-color: #f1ebd9;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 620px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    border: 14px solid #4a3e2e;
+    position: relative;
+    padding: 25px 40px;
+}
+
+.logo-titulo {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1b261b;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+    text-decoration: underline !important;
+}
+
+.hero-titulo {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: #1b261b;
+}
+
+.hero-subtitulo {
+    color: #3b4d3b;
+    font-weight: 600;
+}
+
+.btn-principal {
+    background-color: #aed9b4 !important;
+    color: #1b261b !important;
+    font-family: 'Caveat', cursive !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 5px 25px !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.pasos-container {
+    background-color: #b9d7b3;
+    padding: 25px;
+    border-radius: 45px;
+}
+
+.paso-texto {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b;
+}
+
+.caja-verde-formulario {
+    background-color: #9acb9e;
+    border-radius: 35px;
+    padding: 30px 40px;
+}
+
+.label-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+}
+
+.input-estilo, .textarea-estilo {
+    background-color: #e2f1e4 !important;
+    border: none !important;
+    border-radius: 25px !important;
+    box-shadow: none !important;
+}
+
+.btn-verde-suave {
+    background-color: #e2f1e4 !important;
+    color: #1b261b !important;
+    font-family: 'Caveat', cursive !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    border: 1px solid #7ea882 !important;
+    border-radius: 20px !important;
+}
+
+.tarjeta-libro {
+    background-color: #8bbd8e;
+    border-radius: 30px;
+    padding: 18px;
+    text-align: center;
+    color: #1b261b;
+}
+
+.portada-simulada {
+    width: 100%;
+    height: 120px;
+    background-color: #2b3a2b;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.tag-turno {
+    background-color: #e2f1e4 !important;
+    color: #1b261b !important;
+    font-weight: 700 !important;
+    border-radius: 15px !important;
+}
+
+.caja-detalle-izq {
+    background-color: #9acb9e;
+    border-radius: 35px;
+    padding: 25px;
+}
+
+.linea-tiempo-caja {
+    background-color: #9acb9e;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.item-linea-tiempo {
+    background-color: #e2f1e4;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+.barra-editor {
+    background-color: #9acb9e;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-weight: 700;
+}
+
+.caja-editor {
+    background-color: #e2f1e4;
+    border-radius: 30px;
+    padding: 20px;
+    min-height: 320px;
+}
+
+.stat-pill {
+    padding: 6px 16px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.stat-v1 { background-color: #7ea882; }
+.stat-v2 { background-color: #5b8c60; }
+.stat-v3 { background-color: #3b6d40; }
+
+.vista-oculta {
+    display: none;
+}

@@ -1,0 +1,11 @@
+.stat-pill {
+    padding: 6px 16px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.stat-v1 { background-color: #7ea882; }
+.stat-v2 { background-color: #5b8c60; }
+.stat-v3 { background-color: #3b6d40; }
