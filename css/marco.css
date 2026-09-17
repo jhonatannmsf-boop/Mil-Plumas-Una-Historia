@@ -1,13 +1,13 @@
 .libro-marco {
-    background-color: #f1ebd9;
+    background-color: transparent;
     width: 100%;
     max-width: 1050px;
     min-height: 620px;
-    border-radius: 20px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    border: 14px solid #4a3e2e;
+    border: none;
+    box-shadow: none;
     position: relative;
     padding: 25px 40px;
+    margin: auto;
 }
 
 .logo-titulo {

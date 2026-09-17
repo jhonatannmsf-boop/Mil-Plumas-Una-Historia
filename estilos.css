@@ -1,5 +1,13 @@
 @import url('https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+@import url('css/general.css');
+@import url('css/marco.css');
+@import url('css/landing.css');
+@import url('css/formularios.css');
+@import url('css/explorar.css');
+@import url('css/detalle.css');
+@import url('css/editor.css');
+@import url('css/perfil.css');
 
 * {
     font-family: 'Nunito', sans-serif;
@@ -7,6 +15,11 @@
 
 body {
     background-color: #d1cca4;
+    background-image: url('img/fondo-libro.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,15 +28,15 @@ body {
 }
 
 .libro-marco {
-    background-color: #f1ebd9;
+    background-color: transparent;
     width: 100%;
     max-width: 1050px;
     min-height: 620px;
-    border-radius: 20px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    border: 14px solid #4a3e2e;
+    border: none;
+    box-shadow: none;
     position: relative;
     padding: 25px 40px;
+    margin: auto;
 }
 
 .logo-titulo {
