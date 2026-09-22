@@ -95,7 +95,7 @@ $proximo_turno = $total_turnos + 1;
             <h2 class="hero-titulo is-size-2"><?php echo htmlspecialchars($titulo); ?></h2>
             <p class="link-cursivo is-size-4"><?php echo htmlspecialchars($genero); ?></p>
             <p class="mt-3 is-size-6" style="line-height: 1.6; text-align: justify;">
-                <?php echo htmlspecialchars($descripcion); ?>
+                <?php echo htmlspecialchars($desfcripcion); ?>
             </p>
             <div class="tag tag-turno mt-4 p-3">
                 Reglas: Máx. <?php echo htmlspecialchars($limite_palabras); ?> palabras por turno • Turnos completados: <?php echo $total_turnos; ?>

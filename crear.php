@@ -3,7 +3,7 @@
 <div class="columns is-centered">
     <div class="column is-8">
         <div class="caja-verde-formulario has-text-centered">
-            <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo libro</h2>
+            <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo l</h2>
             <form action="procesar.php" method="POST">
                 <input type="hidden" name="accion" value="crear_historia">
                 
