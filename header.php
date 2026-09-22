@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once('conexion.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -25,7 +25,7 @@ $nombre_usuario = $_SESSION['usuario'] ?? 'Sofía Perez';
         <span class="tag tag-turno">¡Es tu turno!</span>
     </div>
     <p class="is-size-6 my-2">Blackwood siempre había sido un pueblo tranquilo. Al menos, eso era lo que todos decían...</p>
-    <a href="editor.php" class="button btn-verde-suave mt-2">Escribir ahora</a>
+    <a href="editor.php?id=1" class="button btn-verde-suave mt-2">Escribir ahora</a>
 </div>
 
 <?php include('footer.php'); ?>

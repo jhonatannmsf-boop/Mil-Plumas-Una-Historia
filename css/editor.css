@@ -9,5 +9,70 @@
     background-color: #e2f1e4;
     border-radius: 30px;
     padding: 20px;
-    min-height: 320px;
+    min-height: 330px;
+}
+
+.badge-tu-turno {
+    background-color: #1b261b;
+    color: #c9e8cd;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 800;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.aviso-turno-editor {
+    background-color: #d3ebd6;
+    color: #1b261b;
+    padding: 8px 14px;
+    border-radius: 15px;
+    font-size: 13.5px;
+    border-left: 4px solid #5b8c60;
+}
+
+.pestanas-editor {
+    display: flex;
+    gap: 8px;
+    border-bottom: 2px solid #b9d7b3;
+    padding-bottom: 8px;
+}
+
+.btn-tab {
+    background-color: #cce7d0;
+    border: none;
+    border-radius: 15px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 13px;
+    color: #1b261b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-tab:hover {
+    background-color: #b3ddb9;
+}
+
+.btn-tab.is-active {
+    background-color: #5b8c60;
+    color: #ffffff;
+}
+
+.lista-turnos-editor {
+    max-height: 210px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.lista-turnos-editor::-webkit-scrollbar {
+    width: 5px;
+}
+
+.lista-turnos-editor::-webkit-scrollbar-thumb {
+    background-color: #7ea882;
+    border-radius: 10px;
 }

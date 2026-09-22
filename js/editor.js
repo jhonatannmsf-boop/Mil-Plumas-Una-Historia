@@ -1,34 +1,48 @@
+// js/editor.js - Validación y contador dinámico para el editor de turnos
+
 // Validar el formulario antes de enviar
 function validarEditor(event) {
     let textarea = document.getElementById("texto-capitulo");
-    let contenido = textarea ? textarea.value.trim() : "";
+    if (!textarea) return true;
+
+    let contenido = textarea.value.trim();
     let palabras = contenido ? contenido.split(/\s+/).filter(Boolean).length : 0;
+    let limite = textarea.dataset.limite ? parseInt(textarea.dataset.limite) : 300;
+    let turno = textarea.dataset.turno ? textarea.dataset.turno : "";
 
     if (palabras < 10) {
         if (event) event.preventDefault();
         Swal.fire({
             position: "center",
-            icon: "error",
-            title: "Capítulo Muy Corto",
-            text: "Debes escribir al menos 10 palabras antes de publicar.",
-            showConfirmButton: false,
-            timer: 1500
+            icon: "warning",
+            title: "Turno Incompleto",
+            text: "Debes escribir al menos 10 palabras antes de publicar tu turno.",
+            confirmButtonColor: '#5b8c60'
         });
         return false;
     }
 
-    if (palabras > 500) {
+    if (palabras > limite) {
         if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
             title: "Límite Excedido",
-            text: "Has superado el límite de 500 palabras por turno.",
-            showConfirmButton: false,
-            timer: 1500
+            text: `Has superado el límite de ${limite} palabras permitido para este turno (llevas ${palabras}).`,
+            confirmButtonColor: '#5b8c60'
         });
         return false;
     }
+
+    // Indicador de carga mientras se guarda y genera el resumen
+    Swal.fire({
+        title: `Publicando Turno #${turno}...`,
+        text: 'Guardando tu contribución y pasando la pluma...',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
 
     return true;
 }
@@ -40,8 +54,17 @@ function actualizarContador() {
     
     if (textarea && contador) {
         let texto = textarea.value.trim();
-        // .filter(Boolean) evita contar espacios vacíos extras
         let palabras = texto ? texto.split(/\s+/).filter(Boolean).length : 0; 
-        contador.innerText = palabras + " / 500 palabras";
+        let limite = textarea.dataset.limite ? parseInt(textarea.dataset.limite) : 300;
+
+        contador.innerText = palabras + " / " + limite + " palabras";
+
+        if (palabras > limite) {
+            contador.style.color = "#d9534f";
+            contador.style.fontWeight = "bold";
+        } else {
+            contador.style.color = "";
+            contador.style.fontWeight = "";
+        }
     }
 }

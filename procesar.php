@@ -1,14 +1,8 @@
 <?php
 session_start();
+require_once('conexion.php');
 
-$host = "localhost";
-$usuario_db = "root";
-$clave_db = "";
-$nombre_db = "mil_plumas";
-
-$conexion = new mysqli($host, $usuario_db, $clave_db, $nombre_db);
-
-if ($conexion->connect_error) {
+if (!$conexion) {
     die("Error de conexión a la base de datos");
 }
 
@@ -125,7 +119,7 @@ if ($accion === 'publicar_capitulo') {
     $stmt_update->close();
     // =========================================================
 
-    header("Location: explorar.php");
+    header("Location: detalle.php?id=" . $historia_id . "&turno_exito=" . $siguiente_turno);
     exit();
 }
 

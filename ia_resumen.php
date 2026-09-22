@@ -2,8 +2,14 @@
 // ia_resumen.php
 
 function generarResumenIA($textoCompleto) {
-    // Reemplaza esto con tu API Key gratuita de Google AI Studio
-    $apiKey = "TU_API_KEY_DE_GEMINI"; 
+    // Reemplaza esto con tu API Key gratuita de Google AI Studio o variable de entorno
+    $apiKey = getenv('GEMINI_API_KEY') ?: "TU_API_KEY_DE_GEMINI"; 
+
+    // Si no se ha configurado una API key válida, retornar resumen predeterminado sin demoras
+    if (empty($apiKey) || $apiKey === "TU_API_KEY_DE_GEMINI") {
+        return "Los escritores continúan tejiendo esta apasionante historia capítulo a capítulo. Sigue el hilo de los turnos para descubrir los secretos que aguardan.";
+    }
+
     $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $apiKey;
 
     // Prompt optimizado para mantener un tono literario
