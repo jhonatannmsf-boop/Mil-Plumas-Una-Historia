@@ -28,7 +28,6 @@ if ($conexion) {
     }
 }
 
-// Valores por defecto si la base de datos no tiene la historia
 if (!$historia) {
     $historia = [
         'id' => 1,
@@ -45,7 +44,6 @@ $genero = $historia['genero'];
 $limite_palabras = $historia['limite_palabras'] ?? 300;
 $descripcion = !empty($historia['resumen']) ? $historia['resumen'] : "En Blackwood, los secretos nunca mueren. Después de años lejos de casa, Emma regresa al viejo pueblo.";
 
-// Consultar los capítulos/turnos de la historia
 $capitulos = [];
 if ($conexion) {
     $stmt = $conexion->prepare("
@@ -67,7 +65,6 @@ if ($conexion) {
     }
 }
 
-// Capítulos de muestra si la historia no tiene registrados en la BD
 if (empty($capitulos)) {
     $capitulos = [
         [
@@ -93,7 +90,6 @@ $proximo_turno = $total_turnos + 1;
 ?>
 
 <div class="columns">
-    <!-- Columna Izquierda: Información de la Historia -->
     <div class="column is-7">
         <div class="caja-detalle-izq">
             <h2 class="hero-titulo is-size-2"><?php echo htmlspecialchars($titulo); ?></h2>
@@ -107,7 +103,6 @@ $proximo_turno = $total_turnos + 1;
         </div>
     </div>
 
-    <!-- Columna Derecha: Estado del Turno y Línea de Tiempo interactiva -->
     <div class="column is-5 has-text-centered">
         <h3 class="link-cursivo is-size-3">¡Turno #<?php echo $proximo_turno; ?> disponible! Escribe</h3>
         <a href="editor.php?id=<?php echo $historia_id; ?>&turno=<?php echo $proximo_turno; ?>" class="button btn-principal my-3">
@@ -141,7 +136,6 @@ $proximo_turno = $total_turnos + 1;
 </div>
 
 <script>
-// Función para mostrar lo que escribió cada persona al tocar un turno
 function verTurno(numeroTurno, autor, contenido) {
     Swal.fire({
         title: `<span class="link-cursivo" style="font-size: 30px;">Turno #${numeroTurno}</span>`,
@@ -170,7 +164,6 @@ function verTurno(numeroTurno, autor, contenido) {
 }
 
 <?php if (isset($_GET['turno_exito'])): ?>
-// Notificación de éxito tras publicar un turno
 document.addEventListener('DOMContentLoaded', function() {
     Swal.fire({
         title: '<span class="link-cursivo is-size-2">¡Turno Publicado!</span>',

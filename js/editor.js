@@ -1,6 +1,3 @@
-// js/editor.js - Validación y contador dinámico para el editor de turnos
-
-// Validar el formulario antes de enviar
 function validarEditor(event) {
     let textarea = document.getElementById("texto-capitulo");
     if (!textarea) return true;
@@ -34,7 +31,6 @@ function validarEditor(event) {
         return false;
     }
 
-    // Indicador de carga mientras se guarda y genera el resumen
     Swal.fire({
         title: `Publicando Turno #${turno}...`,
         text: 'Guardando tu contribución y pasando la pluma...',
@@ -47,7 +43,6 @@ function validarEditor(event) {
     return true;
 }
 
-// Actualizar el contador de palabras en tiempo real
 function actualizarContador() {
     let textarea = document.getElementById("texto-capitulo");
     let contador = document.getElementById("contador-palabras");

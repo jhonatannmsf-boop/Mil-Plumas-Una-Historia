@@ -1,7 +1,6 @@
 <?php 
 include('header.php');
 
-// Obtener la historia de la BD
 $historia_id = isset($_GET['id']) ? intval($_GET['id']) : 1;
 
 $historia = null;
@@ -15,7 +14,6 @@ if ($conexion) {
     }
 }
 
-// Fallback seguro si la historia no existe en la BD
 if (!$historia) {
     $historia = [
         'id' => $historia_id,
@@ -29,7 +27,6 @@ if (!$historia) {
 $limitePalabras = intval($historia['limite_palabras'] ?? 300);
 $resumenTexto = !empty($historia['resumen']) ? $historia['resumen'] : "Aún no se ha generado un resumen para esta historia.";
 
-// Consultar los turnos/capítulos anteriores
 $capitulos = [];
 if ($conexion) {
     $stmt_caps = $conexion->prepare("
@@ -51,7 +48,6 @@ if ($conexion) {
     }
 }
 
-// Respaldo de turnos si no hay en la BD
 if (empty($capitulos)) {
     $capitulos = [
         [
@@ -76,7 +72,6 @@ $total_turnos = count($capitulos);
 $numero_turno = $total_turnos + 1;
 ?>
 
-<!-- Barra superior del Editor: Informa claramente el Turno Actual -->
 <div class="barra-editor is-flex is-justify-content-space-between is-align-items-center mb-4">
     <span class="is-size-5 font-weight-bold">📖 <?php echo htmlspecialchars($historia['titulo']); ?></span>
     <span class="badge-tu-turno">✍️ Tu Turno: <strong>Turno #<?php echo $numero_turno; ?></strong> (¡Te toca escribir!)</span>
@@ -89,10 +84,8 @@ $numero_turno = $total_turnos + 1;
     <input type="hidden" name="numero_turno" value="<?php echo $numero_turno; ?>">
     
     <div class="columns">
-        <!-- Columna Izquierda: Resumen IA y Consulta de Turnos Anteriores -->
         <div class="column is-6">
             <div class="caja-editor">
-                <!-- Pestañas para alternar entre Resumen y Turnos Anteriores -->
                 <div class="pestanas-editor mb-3">
                     <button type="button" id="btn-tab-resumen" class="btn-tab is-active" onclick="cambiarTabEditor('resumen')">
                         🤖 Resumen IA
@@ -102,7 +95,6 @@ $numero_turno = $total_turnos + 1;
                     </button>
                 </div>
 
-                <!-- Panel 1: Resumen IA -->
                 <div id="panel-resumen">
                     <h3 class="link-cursivo is-size-4 mb-2">Resumen de los capítulos anteriores</h3>
                     <p class="is-size-7" style="line-height: 1.6; text-align: justify;">
@@ -110,7 +102,6 @@ $numero_turno = $total_turnos + 1;
                     </p>
                 </div>
 
-                <!-- Panel 2: Turnos Anteriores con lectura al tocar -->
                 <div id="panel-turnos" style="display: none;">
                     <h3 class="link-cursivo is-size-4 mb-2">Turnos Anteriores (Toca para leer)</h3>
                     <p class="is-size-7 mb-2">Toca cualquier turno para leer lo que escribió ese autor:</p>
@@ -129,7 +120,6 @@ $numero_turno = $total_turnos + 1;
             </div>
         </div>
         
-        <!-- Columna Derecha: Editor de texto -->
         <div class="column is-6">
             <div class="caja-editor">
                 <div class="aviso-turno-editor mb-2">
@@ -157,7 +147,6 @@ $numero_turno = $total_turnos + 1;
 </form>
 
 <script>
-// Alternar pestañas en el editor
 function cambiarTabEditor(tab) {
     const pResumen = document.getElementById('panel-resumen');
     const pTurnos = document.getElementById('panel-turnos');
@@ -177,7 +166,6 @@ function cambiarTabEditor(tab) {
     }
 }
 
-// Ver lo que escribió cada persona desde el editor
 function verTurnoEditor(numeroTurno, autor, contenido) {
     Swal.fire({
         title: `<span class="link-cursivo" style="font-size: 28px;">Turno #${numeroTurno}</span>`,
@@ -219,7 +207,6 @@ function guardarBorrador() {
     });
 }
 
-// Recuperar borrador si existe
 document.addEventListener('DOMContentLoaded', function() {
     const guardado = localStorage.getItem('borrador_historia_<?php echo $historia_id; ?>');
     const textarea = document.getElementById("texto-capitulo");

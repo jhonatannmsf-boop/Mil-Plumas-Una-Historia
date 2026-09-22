@@ -86,18 +86,13 @@ if ($accion === 'publicar_capitulo') {
     $siguiente_turno = $res['total'] + 1;
     $stmt_turno->close();
 
-    // 1. Guardar el capítulo actual (Tu código original)
     $stmt = $conexion->prepare("INSERT INTO capitulos (historia_id, usuario_id, numero_turno, contenido) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("iiis", $historia_id, $usuario_id, $siguiente_turno, $contenido);
     $stmt->execute();
     $stmt->close();
 
-    // =========================================================
-    // 2. NUEVO: GENERAR Y GUARDAR EL RESUMEN CON LA IA
-    // =========================================================
     require_once('ia_resumen.php');
 
-    // Consultar todos los capítulos para enviárselos a la IA
     $stmt_textos = $conexion->prepare("SELECT contenido FROM capitulos WHERE historia_id = ? ORDER BY numero_turno ASC");
     $stmt_textos->bind_param("i", $historia_id);
     $stmt_textos->execute();
@@ -109,15 +104,12 @@ if ($accion === 'publicar_capitulo') {
     }
     $stmt_textos->close();
 
-    // Generar resumen con la API de Gemini
     $nuevoResumen = generarResumenIA($textoCompleto);
 
-    // Actualizar la columna 'resumen' en la tabla historias
     $stmt_update = $conexion->prepare("UPDATE historias SET resumen = ? WHERE id = ?");
     $stmt_update->bind_param("si", $nuevoResumen, $historia_id);
     $stmt_update->execute();
     $stmt_update->close();
-    // =========================================================
 
     header("Location: detalle.php?id=" . $historia_id . "&turno_exito=" . $siguiente_turno);
     exit();

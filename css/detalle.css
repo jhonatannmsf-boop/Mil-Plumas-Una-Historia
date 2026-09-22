@@ -16,7 +16,6 @@
     padding-right: 5px;
 }
 
-/* Estilo para barra de scroll estilizada */
 .lista-turnos-scroll::-webkit-scrollbar {
     width: 6px;
 }

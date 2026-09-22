@@ -1,5 +1,4 @@
 <?php
-// conexion.php - Conexión centralizada a la base de datos mil_plumas
 
 if (!isset($conexion) || !($conexion instanceof mysqli)) {
     $host = "localhost";
@@ -12,12 +11,10 @@ if (!isset($conexion) || !($conexion instanceof mysqli)) {
         $conexion = @new mysqli($host, $usuario_db, $clave_db);
 
         if ($conexion && !$conexion->connect_error) {
-            // Asegurar que la base de datos exista
             $conexion->query("CREATE DATABASE IF NOT EXISTS `$nombre_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
             $conexion->select_db($nombre_db);
             $conexion->set_charset("utf8mb4");
 
-            // Crear tabla de usuarios si no existe
             $conexion->query("CREATE TABLE IF NOT EXISTS usuarios (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre_usuario VARCHAR(100) NOT NULL UNIQUE,
@@ -26,7 +23,6 @@ if (!isset($conexion) || !($conexion instanceof mysqli)) {
                 fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )");
 
-            // Crear tabla de historias si no existe
             $conexion->query("CREATE TABLE IF NOT EXISTS historias (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 titulo VARCHAR(255) NOT NULL,
@@ -38,7 +34,6 @@ if (!isset($conexion) || !($conexion instanceof mysqli)) {
                 fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )");
 
-            // Crear tabla de capítulos si no existe
             $conexion->query("CREATE TABLE IF NOT EXISTS capitulos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 historia_id INT NOT NULL,
@@ -48,12 +43,10 @@ if (!isset($conexion) || !($conexion instanceof mysqli)) {
                 fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )");
 
-            // Verificar si hay historias iniciales, si no, crear la historia inicial con sus turnos de ejemplo
             $checkHistorias = $conexion->query("SELECT COUNT(*) as total FROM historias");
             if ($checkHistorias) {
                 $fila = $checkHistorias->fetch_assoc();
                 if (intval($fila['total']) === 0) {
-                    // Insertar usuarios de muestra
                     $passDemo = password_hash('12345678', PASSWORD_BCRYPT);
                     $stmtUser = $conexion->prepare("INSERT IGNORE INTO usuarios (id, nombre_usuario, correo, contrasena) VALUES 
                         (1, 'Emma', 'emma@ejemplo.com', ?),
@@ -65,7 +58,6 @@ if (!isset($conexion) || !($conexion instanceof mysqli)) {
                         $stmtUser->close();
                     }
 
-                    // Insertar historias iniciales
                     $resumenInicial = "Emma regresa a Blackwood tras años de ausencia. Una serie de extrañas desapariciones y susurros nocturnos amenazan con desvelar los oscuros secretos del pueblo.";
                     $stmtHist = $conexion->prepare("INSERT INTO historias (id, titulo, genero, tiempo_horas, limite_palabras, creador_id, resumen) VALUES 
                         (1, 'Secretos de Blackwood', 'Misterio - Terror', 24, 300, 1, ?)");
@@ -75,7 +67,6 @@ if (!isset($conexion) || !($conexion instanceof mysqli)) {
                         $stmtHist->close();
                     }
 
-                    // Insertar los 3 primeros turnos de la historia
                     $cap1 = "En Blackwood, los secretos nunca mueren. Después de años lejos de casa, Emma regresa al viejo pueblo. Todo parece igual... hasta que comienzan a ocurrir cosas extrañas y una serie de desapariciones despierta viejas historias que nadie quiere recordar.";
                     $cap2 = "La niebla cubrió las calles empedradas al caer la noche. Frente al farol apagado, Emma juró escuchar pasos apresurados detrás de ella. Se dio la vuelta con el corazón palpitando, pero solo encontró una vieja pluma negra en el suelo húmedo.";
                     $cap3 = "Al levantar la pluma, un escalofrío recorrió su espalda. Las campanas de la iglesia abandonada comenzaron a doblar a deshoras, resonando con un eco ensordecedor que parecía llamarla por su nombre desde las sombras.";

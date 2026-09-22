@@ -1,7 +1,6 @@
 <?php 
 include('header.php'); 
 
-// Consultar historias de la base de datos si están disponibles
 $historias_bd = [];
 if ($conexion) {
     $resH = $conexion->query("
