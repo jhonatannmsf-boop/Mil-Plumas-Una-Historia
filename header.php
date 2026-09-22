@@ -1,9 +1,4 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-require_once('conexion.php');
-?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,11 +21,11 @@ require_once('conexion.php');
             <a onclick="history.back()" class="link-cursivo" style="cursor:pointer;">Anterior</a>
         </div>
         <div class="level-right">
-            <?php if(isset($_SESSION['usuario'])): ?>
+            
                 <a href="perfil.php" class="link-cursivo">@<?php echo $_SESSION['usuario']; ?></a>
-            <?php else: ?>
+          
                 <a href="login.php" class="link-cursivo mr-3">Iniciar Sesión</a>
                 <a href="registro.php" class="link-cursivo">Registrarse</a>
-            <?php endif; ?>
+           
         </div>
     </nav>
