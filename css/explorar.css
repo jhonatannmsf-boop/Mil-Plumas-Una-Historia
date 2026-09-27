@@ -21,3 +21,20 @@
     font-weight: 700 !important;
     border-radius: 15px !important;
 }
+.boton-like {
+    background-color: #b9d7b3;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-like:hover {
+    background-color: #a4c89d;
+}
+
+.boton-like.activo {
+    background-color: #ffb6c1;
+}

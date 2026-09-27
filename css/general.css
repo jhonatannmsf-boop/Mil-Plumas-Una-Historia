@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
 
 * {
@@ -6,10 +6,10 @@
 }
 
 body {
-    background-color: #d1cca4;
-    background-image: url('../img/fondo-libro.jpg');
+    background-color: #ede9d8;
+    background-image: url('../img/fondo.png');
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center bottom;
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
@@ -26,7 +26,7 @@ body {
 }
 
 .hero-subtitulo {
-    color: #3b4d3b;
+    color: #1b261b;
     font-weight: 600;
 }
 
@@ -38,6 +38,17 @@ body {
     font-weight: 700 !important;
     border: none !important;
     border-radius: 20px !important;
-    padding: 5px 25px !important;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 6px 28px !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+.btn-principal:hover {
+    background-color: #8ec69b !important;
+    color: #1b261b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18) !important;
+}
+.btn-principal:active {
+    transform: scale(0.97);
 }

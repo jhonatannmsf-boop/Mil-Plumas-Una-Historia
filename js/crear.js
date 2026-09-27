@@ -44,3 +44,19 @@ function validarCrearHistoria(event) {
 
     return true;
 }
+
+function procesarCrearHistoria(event) {
+    if (event) event.preventDefault();
+    if (!validarCrearHistoria(event)) return false;
+
+    Swal.fire({
+        icon: "success",
+        title: "¡Historia Creada!",
+        text: "Tu nueva historia ha sido creada con éxito.",
+        confirmButtonColor: '#5b8c60'
+    }).then(() => {
+        window.location.href = "explorar.html";
+    });
+
+    return false;
+}

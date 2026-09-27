@@ -1,27 +1,51 @@
-<?php include('header.php'); ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mil Plumas, Una Historia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
 
-<h1 class="hero-titulo has-text-centered mt-4">Escribe historias infinitas por turnos</h1>
-<p class="hero-subtitulo has-text-centered mb-5">Únete a miles de historias para tejer historias juntos, un párrafo a la vez.</p>
+<div class="libro-marco">
+    <div id="header"></div>
 
-<div class="buttons is-centered mb-6">
-    <a href="explorar.php" class="button btn-principal mr-4">Comenzar a escribir</a>
-    <a href="explorar.php" class="button btn-principal">Explorar libros</a>
+    <h1 class="hero-titulo has-text-centered mt-4">Escribe historias infinitas por turnos</h1>
+    <p class="hero-subtitulo has-text-centered mb-5">Únete a miles de historias para tejer historias juntos, un párrafo a la vez.</p>
+
+    <div class="buttons is-centered mb-6">
+        <a href="explorar.html" class="button btn-principal">Explorar libros</a>
+    </div>
+
+    <h2 id="como-funciona" class="hero-titulo has-text-centered is-size-3 mb-4">Cómo funciona</h2>
+    
+    <div class="pasos-horizontal is-flex is-justify-content-space-around is-align-items-center mb-200">
+        <span>👥 Únete a una historia</span>
+        
+        <span>📜 Escribe en tu turno</span>
+        
+        <span>🪶 Pasa la pluma</span>
+   </div>
+
+
+
+    <div id="footer"></div>
 </div>
 
-<h2 id="como-funciona" class="hero-titulo has-text-centered is-size-3 mb-4">Cómo funciona</h2>
-<div class="columns pasos-container has-text-centered">
-    <div class="column paso-texto">
-        <span class="is-size-2 is-block">👥</span>
-        1. Únete a una historia
-    </div>
-    <div class="column paso-texto">
-        <span class="is-size-2 is-block">📜</span>
-        2. Escribe en tu turno
-    </div>
-    <div class="column paso-texto">
-        <span class="is-size-2 is-block">🪶</span>
-        3. Pasa la pluma
-    </div>
-</div>
+<script>
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
+    });
 
-<?php include('footer.php'); ?>
+fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>

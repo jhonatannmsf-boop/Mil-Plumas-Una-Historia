@@ -1,31 +1,15 @@
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mil Plumas, Una Historia</title>
-    <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-
-<div class="libro-marco">
-    <nav class="level mb-5">
-        <div class="level-left">
-            <a href="index.php" class="logo-titulo">Mil Plumas, Una Historia</a>
-        </div>
-        <div class="level-item">
-            <a href="explorar.php" class="link-cursivo mr-4">Explorar</a>
-            <a href="index.php#como-funciona" class="link-cursivo mr-4">Cómo funciona</a>
-            <a href="crear.php" class="link-cursivo mr-4">Crear</a>
-            <a onclick="history.back()" class="link-cursivo" style="cursor:pointer;">Anterior</a>
-        </div>
-        <div class="level-right">
-            
-                <a href="perfil.php" class="link-cursivo">@<?php echo $_SESSION['usuario']; ?></a>
-          
-                <a href="login.php" class="link-cursivo mr-3">Iniciar Sesión</a>
-                <a href="registro.php" class="link-cursivo">Registrarse</a>
-           
-        </div>
-    </nav>
+<nav class="level mb-5">
+    <div class="level-left">
+        <a href="index.html" class="logo-titulo">Mil Plumas, Una <br> Historia</a>
+    </div>
+    <div class="level-item" style="gap: 24px;">
+        <a href="explorar.html" class="link-cursivo">Explorar</a>
+        <a href="index.html#como-funciona" class="link-cursivo">Cómo funciona</a>
+        <a href="crear.html" class="link-cursivo">Crear</a>
+        <a onclick="history.back()" class="link-cursivo" style="cursor:pointer;">Anterior</a>
+    </div>
+    <div class="level-right" style="gap: 20px;">
+        <a href="login.html" class="link-cursivo">Iniciar Sesión</a>
+        <a href="registro.html" class="link-cursivo">Registrarse</a>
+    </div>
+</nav>

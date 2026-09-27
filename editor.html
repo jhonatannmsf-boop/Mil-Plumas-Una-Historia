@@ -1,152 +1,112 @@
-<?php 
-include('header.php');
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Turno - Mil Plumas, Una Historia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
 
-$historia_id = isset($_GET['id']) ? intval($_GET['id']) : 1;
+<div class="libro-marco">
+    <div id="header"></div>
 
-$historia = null;
-if ($conexion) {
-    $stmt = $conexion->prepare("SELECT id, titulo, genero, limite_palabras, resumen FROM historias WHERE id = ?");
-    if ($stmt) {
-        $stmt->bind_param("i", $historia_id);
-        $stmt->execute();
-        $historia = $stmt->get_result()->fetch_assoc();
-        $stmt->close();
-    }
-}
+    <div class="barra-editor is-flex is-justify-content-space-between is-align-items-center mb-4">
+        <span class="is-size-5 font-weight-bold">📖 Secretos de Blackwood</span>
+        <span class="badge-tu-turno"> Tu Turno </span>
+        <span id="contador-palabras">0 / 300 palabras</span>
+    </div>
 
-if (!$historia) {
-    $historia = [
-        'id' => $historia_id,
-        'titulo' => 'Secretos de Blackwood',
-        'genero' => 'Misterio - Terror',
-        'limite_palabras' => 300,
-        'resumen' => 'Emma regresa a Blackwood tras años de ausencia. Una serie de extrañas desapariciones y susurros nocturnos amenazan con desvelar los oscuros secretos del pueblo.'
-    ];
-}
+    <form onsubmit="publicarTurno(event)">
+        <div class="columns">
+            <div class="column is-6">
+                <div class="caja-editor">
+                    <div class="pestanas-editor mb-3">
+                        <button type="button" id="btn-tab-turnos" class="btn-tab" onclick="cambiarTabEditor('turnos')">
+                            📜 Turnos Anteriores (3)
+                        </button>
+                    </div>
 
-$limitePalabras = intval($historia['limite_palabras'] ?? 300);
-$resumenTexto = !empty($historia['resumen']) ? $historia['resumen'] : "Aún no se ha generado un resumen para esta historia.";
+                    <div id="panel-resumen">
+                        <h3 class="link-cursivo is-size-4 mb-2">Resumen de los capítulos anteriores</h3>
+                        <p class="is-size-7" style="line-height: 1.6; text-align: justify;">
+                            Emma regresa al viejo pueblo de Blackwood tras años de ausencia. Una serie de desapariciones y susurros nocturnos amenazan con desvelar los oscuros secretos del lugar.
+                        </p>
+                    </div>
 
-$capitulos = [];
-if ($conexion) {
-    $stmt_caps = $conexion->prepare("
-        SELECT c.id, c.numero_turno, c.contenido, c.fecha_creacion,
-               COALESCE(u.nombre_usuario, 'Escritor anónimo') AS autor
-        FROM capitulos c
-        LEFT JOIN usuarios u ON c.usuario_id = u.id
-        WHERE c.historia_id = ?
-        ORDER BY c.numero_turno ASC
-    ");
-    if ($stmt_caps) {
-        $stmt_caps->bind_param("i", $historia_id);
-        $stmt_caps->execute();
-        $res_caps = $stmt_caps->get_result();
-        while ($row = $res_caps->fetch_assoc()) {
-            $capitulos[] = $row;
-        }
-        $stmt_caps->close();
-    }
-}
-
-if (empty($capitulos)) {
-    $capitulos = [
-        [
-            'numero_turno' => 1,
-            'autor' => 'Emma',
-            'contenido' => 'En Blackwood, los secretos nunca mueren. Después de años lejos de casa, Emma regresa al viejo pueblo. Todo parece igual... hasta que comienzan a ocurrir cosas extrañas y una serie de desapariciones despierta viejas historias que nadie quiere recordar.'
-        ],
-        [
-            'numero_turno' => 2,
-            'autor' => 'Dino',
-            'contenido' => 'La niebla cubrió las calles empedradas al caer la noche. Frente al farol apagado, Emma juró escuchar pasos apresurados detrás de ella. Se dio la vuelta con el corazón palpitando, pero solo encontró una vieja pluma negra en el suelo húmedo.'
-        ],
-        [
-            'numero_turno' => 3,
-            'autor' => 'Sofia',
-            'contenido' => 'Al levantar la pluma, un escalofrío recorrió su espalda. Las campanas de la iglesia abandonada comenzaron a doblar a deshoras, resonando con un eco ensordecedor que parecía llamarla por su nombre desde las sombras.'
-        ]
-    ];
-}
-
-$total_turnos = count($capitulos);
-$numero_turno = $total_turnos + 1;
-?>
-
-<div class="barra-editor is-flex is-justify-content-space-between is-align-items-center mb-4">
-    <span class="is-size-5 font-weight-bold">📖 <?php echo htmlspecialchars($historia['titulo']); ?></span>
-    <span class="badge-tu-turno">✍️ Tu Turno: <strong>Turno #<?php echo $numero_turno; ?></strong> (¡Te toca escribir!)</span>
-    <span id="contador-palabras">0 / <?php echo $limitePalabras; ?> palabras</span>
-</div>
-
-<form action="procesar.php" method="POST">
-    <input type="hidden" name="accion" value="publicar_capitulo">
-    <input type="hidden" name="historia_id" value="<?php echo $historia['id']; ?>">
-    <input type="hidden" name="numero_turno" value="<?php echo $numero_turno; ?>">
-    
-    <div class="columns">
-        <div class="column is-6">
-            <div class="caja-editor">
-                <div class="pestanas-editor mb-3">
-                    <button type="button" id="btn-tab-resumen" class="btn-tab is-active" onclick="cambiarTabEditor('resumen')">
-                        🤖 Resumen IA
-                    </button>
-                    <button type="button" id="btn-tab-turnos" class="btn-tab" onclick="cambiarTabEditor('turnos')">
-                        📜 Turnos Anteriores (<?php echo $total_turnos; ?>)
-                    </button>
-                </div>
-
-                <div id="panel-resumen">
-                    <h3 class="link-cursivo is-size-4 mb-2">Resumen de los capítulos anteriores</h3>
-                    <p class="is-size-7" style="line-height: 1.6; text-align: justify;">
-                        <?php echo htmlspecialchars($resumenTexto); ?>
-                    </p>
-                </div>
-
-                <div id="panel-turnos" style="display: none;">
-                    <h3 class="link-cursivo is-size-4 mb-2">Turnos Anteriores (Toca para leer)</h3>
-                    <p class="is-size-7 mb-2">Toca cualquier turno para leer lo que escribió ese autor:</p>
-                    <div class="lista-turnos-editor">
-                        <?php foreach ($capitulos as $cap): ?>
+                    <div id="panel-turnos" style="display: none;">
+                        <h3 class="link-cursivo is-size-4 mb-2">Turnos Anteriores (Toca para leer)</h3>
+                        <p class="is-size-7 mb-2">Toca cualquier turno para leer lo que escribió ese autor:</p>
+                        <div class="lista-turnos-editor">
                             <div class="item-linea-tiempo item-turno-interactivo mb-2"
-                                 onclick="verTurnoEditor(<?php echo $cap['numero_turno']; ?>, <?php echo htmlspecialchars(json_encode($cap['autor'])); ?>, <?php echo htmlspecialchars(json_encode($cap['contenido'])); ?>)">
+                                 onclick="verTurnoEditor(1, 'Emma', 'En Blackwood, los secretos nunca mueren. Después de años lejos de casa, Emma regresa al viejo pueblo.')">
                                 <div class="is-flex is-justify-content-space-between is-align-items-center">
-                                    <span>📖 <strong>Turno <?php echo $cap['numero_turno']; ?>:</strong> @<?php echo htmlspecialchars($cap['autor']); ?></span>
+                                    <span>📖 <strong>Turno 1:</strong> @Emma</span>
                                     <span class="tag-leer-turno">👁️ Ver texto</span>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
+                            <div class="item-linea-tiempo item-turno-interactivo mb-2"
+                                 onclick="verTurnoEditor(2, 'Dino', 'La niebla cubrió las calles empedradas al caer la noche. Frente al farol apagado, Emma juró escuchar pasos apresurados detrás de ella.')">
+                                <div class="is-flex is-justify-content-space-between is-align-items-center">
+                                    <span>📖 <strong>Turno 2:</strong> @Dino</span>
+                                    <span class="tag-leer-turno">👁️ Ver texto</span>
+                                </div>
+                            </div>
+                            <div class="item-linea-tiempo item-turno-interactivo mb-2"
+                                 onclick="verTurnoEditor(3, 'Sofia', 'Al levantar la pluma, un escalofrío recorrió su espalda. Las campanas de la iglesia abandonada comenzaron a doblar a deshoras.')">
+                                <div class="is-flex is-justify-content-space-between is-align-items-center">
+                                    <span>📖 <strong>Turno 3:</strong> @Sofia</span>
+                                    <span class="tag-leer-turno">👁️ Ver texto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="column is-6">
+                <div class="caja-editor">
+                    <div class="aviso-turno-editor mb-2">
+                        ✍️ <strong>Turno #4:</strong> Escribe tu contribución para continuar el relato (mín. 10 palabras, máx. 300 palabras).
+                    </div>
+                    <textarea id="texto-capitulo" 
+                              class="textarea textarea-estilo" 
+                              style="height:210px; resize:none;" 
+                              data-limite="300"
+                              data-turno="4"
+                              oninput="actualizarContador()" 
+                              placeholder="Escribe aquí el Turno #4 de la historia..." 
+                              required></textarea>
+
+                    <div class="is-flex is-justify-content-space-between mt-3">                 
+                        <button type="submit" class="button btn-principal">
+                            Publicar Turno
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="column is-6">
-            <div class="caja-editor">
-                <div class="aviso-turno-editor mb-2">
-                    ✍️ <strong>Turno #<?php echo $numero_turno; ?>:</strong> Escribe tu contribución para continuar el relato (mín. 10 palabras, máx. <?php echo $limitePalabras; ?> palabras).
-                </div>
-                <textarea id="texto-capitulo" 
-                          name="contenido" 
-                          class="textarea textarea-estilo" 
-                          style="height:210px; resize:none;" 
-                          data-limite="<?php echo $limitePalabras; ?>"
-                          data-turno="<?php echo $numero_turno; ?>"
-                          oninput="actualizarContador()" 
-                          placeholder="Escribe aquí el Turno #<?php echo $numero_turno; ?> de la historia..." 
-                          required></textarea>
+    </form>
 
-                <div class="is-flex is-justify-content-space-between mt-3">                  
-                    <button type="button" onclick="guardarBorrador()" class="button btn-verde-suave">Guardar Borrador</button>
-                    <button type="submit" onclick="return validarEditor(event)" class="button btn-principal">
-                        Publicar Turno #<?php echo $numero_turno; ?> y pasar pluma
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+    <div id="footer"></div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/editor.js"></script>
 <script>
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
+    });
+
+fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer").innerHTML = data;
+    });
+
 function cambiarTabEditor(tab) {
     const pResumen = document.getElementById('panel-resumen');
     const pTurnos = document.getElementById('panel-turnos');
@@ -172,10 +132,10 @@ function verTurnoEditor(numeroTurno, autor, contenido) {
         html: `
             <div style="text-align: left; background-color: #f3faf4; padding: 16px; border-radius: 18px; border: 2px solid #9acb9e; max-height: 320px; overflow-y: auto;">
                 <p style="font-weight: bold; margin-bottom: 8px; color: #1b261b;">
-                    ✍️ Escrito por: <span style="color: #2e6235;">@${autor}</span>
+                    ✍️ Escrito por: <span style="color: #1b261b;">@${autor}</span>
                 </p>
                 <hr style="margin: 8px 0; background-color: #c1dec4;">
-                <p style="font-size: 15px; line-height: 1.6; color: #233123; white-space: pre-line; text-align: justify;">
+                <p style="font-size: 15px; line-height: 1.6; color: #1b261b; white-space: pre-line; text-align: justify;">
                     ${contenido}
                 </p>
             </div>
@@ -197,26 +157,40 @@ function guardarBorrador() {
         });
         return;
     }
-    localStorage.setItem('borrador_historia_<?php echo $historia_id; ?>', texto);
+    localStorage.setItem('borrador_texto', texto);
     Swal.fire({
         icon: 'success',
         title: 'Borrador guardado',
-        text: 'Tu texto se guardó localmente en este navegador.',
+        text: 'Tu texto se guardó en el navegador.',
         timer: 1500,
         showConfirmButton: false
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const guardado = localStorage.getItem('borrador_historia_<?php echo $historia_id; ?>');
+function publicarTurno(event) {
+    if (event) event.preventDefault();
+    if (!validarEditor(event)) return false;
+
+    localStorage.removeItem('borrador_texto');
+
+    Swal.fire({
+        icon: 'success',
+        title: '¡Turno Publicado!',
+        text: 'Tu texto fue enviado y se pasó la pluma.',
+        confirmButtonColor: '#5b8c60'
+    }).then(() => {
+        window.location.href = "detalle.html";
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const guardado = localStorage.getItem('borrador_texto');
     const textarea = document.getElementById("texto-capitulo");
-    if (guardado && textarea && !textarea.value) {
+    if (guardado && textarea) {
         textarea.value = guardado;
-        if (typeof actualizarContador === 'function') {
-            actualizarContador();
-        }
+        actualizarContador();
     }
 });
 </script>
-
-<?php include('footer.php'); ?>
+</body>
+</html>

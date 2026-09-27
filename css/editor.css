@@ -14,7 +14,7 @@
 
 .badge-tu-turno {
     background-color: #1b261b;
-    color: #c9e8cd;
+    color: #c9e8cd !important;
     padding: 6px 16px;
     border-radius: 20px;
     font-size: 15px;
@@ -43,23 +43,30 @@
 
 .btn-tab {
     background-color: #cce7d0;
-    border: none;
-    border-radius: 15px;
-    padding: 6px 14px;
-    font-weight: 700;
-    font-size: 13px;
-    color: #1b261b;
+    border: 1px solid #9acb9e;
+    border-radius: 15px !important;
+    padding: 6px 16px;
+    font-family: 'Caveat', cursive !important;
+    font-weight: 700 !important;
+    font-size: 16px;
+    color: #1b261b !important;           /* texto negro */
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .btn-tab:hover {
     background-color: #b3ddb9;
+    color: #1b261b !important;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
 }
 
 .btn-tab.is-active {
-    background-color: #5b8c60;
-    color: #ffffff;
+    background-color: #8ec693;
+    color: #1b261b !important;
+    border: 2px solid #5b8c60;
+    font-weight: 800 !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 .lista-turnos-editor {

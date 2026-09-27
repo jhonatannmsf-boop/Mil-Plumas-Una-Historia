@@ -1,74 +1,75 @@
-<?php 
-include('header.php'); 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Libros - Mil Plumas, Una Historia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
 
-$historias_bd = [];
-if ($conexion) {
-    $resH = $conexion->query("
-        SELECT h.id, h.titulo, h.genero, h.limite_palabras,
-               COUNT(c.id) as total_turnos
-        FROM historias h
-        LEFT JOIN capitulos c ON h.id = c.historia_id
-        GROUP BY h.id
-        ORDER BY h.id ASC
-    ");
-    if ($resH) {
-        while ($h = $resH->fetch_assoc()) {
-            $historias_bd[] = $h;
-        }
-    }
-}
-?>
+<div class="libro-marco">
+    <div id="header"></div>
 
-<input class="input input-estilo mb-4" type="text" placeholder="Buscar Libros o géneros...">
-<div class="is-flex is-justify-content-space-between mb-5 px-5">
-    <a href="#" class="link-cursivo">Todos</a>
-    <a href="#" class="link-cursivo">Fantasía</a>
-    <a href="#" class="link-cursivo">Misterio</a>
-    <a href="#" class="link-cursivo">Terror</a>
+    <input class="input input-estilo mb-4" type="text" placeholder="Buscar Libros o géneros...">
+    
+    <div class="is-flex is-justify-content-space-between mb-5 px-5">
+        <a href="#" class="link-cursivo">Todos</a>
+        <a href="#" class="link-cursivo">Fantasía</a>
+        <a href="#" class="link-cursivo">Misterio</a>
+        <a href="#" class="link-cursivo">Terror</a>
+    </div>
+
+    <div class="columns is-multiline">
+        <div class="column is-4">
+            <div class="tarjeta-libro" style="cursor:pointer;">
+                
+                <div class="portada-simulada"></div>
+                <div class="link-cursivo is-size-4" onclick="location.href='detalle.html?id=1&titulo=Secretos de Blackwood&genero=Misterio - Terror'" >Secretos de Blackwood</div>
+                <div class="is-size-5">Misterio • Terror</div>
+                <button id="btn-like" class="boton-like">
+                    ❤️ Me gusta <span class="contador">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="column is-4">
+            <div class="tarjeta-libro" style="cursor:pointer;">
+                <div class="portada-simulada"></div>
+                <div class="link-cursivo is-size-4" onclick="location.href='detalle.html?id=2&titulo=Las Sombras del Reloj&genero=Misterio'">Las Sombras del Reloj</div>
+                <div class="is-size-5">Misterio</div>
+                <button id="btn-like" class="boton-like">
+                    ❤️ Me gusta <span class="contador">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="column is-4">
+            <div class="tarjeta-libro"  style="cursor:pointer;">
+                <div class="portada-simulada"></div>
+                <div class="link-cursivo is-size-4" onclick="location.href='detalle.html?id=3&titulo=El Pacto de los Inmortales&genero=Terror - Fantasía'">El Pacto de los Inmortales</div>
+                <div class="is-size-5">Terror • Fantasía</div>
+                <button id="btn-like" class="boton-like">
+                    ❤️ Me gusta <span class="contador">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
 </div>
+<script src="js/explorar.js"></script>
+<script>
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
+    });
 
-<div class="columns is-multiline">
-    <?php if (!empty($historias_bd)): ?>
-        <?php foreach ($historias_bd as $h): ?>
-            <div class="column is-4">
-                <div class="tarjeta-libro" onclick="location.href='detalle.php?id=<?php echo $h['id']; ?>'" style="cursor:pointer;">
-                    <div class="portada-simulada"></div>
-                    <div class="link-cursivo is-size-4"><?php echo htmlspecialchars($h['titulo']); ?></div>
-                    <div class="link-cursivo is-size-5"><?php echo htmlspecialchars($h['genero']); ?></div>
-                    <div class="my-2">👥 <?php echo $h['total_turnos']; ?> turnos escritos</div>
-                    <span class="tag tag-turno">Turno #<?php echo ($h['total_turnos'] + 1); ?> Libre • ¡Escribe ahora!</span>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div class="column is-4">
-            <div class="tarjeta-libro" onclick="location.href='detalle.php?id=1&titulo=Secretos de Blackwood&genero=Misterio - Terror'" style="cursor:pointer;">
-                <div class="portada-simulada"></div>
-                <div class="link-cursivo is-size-4">Secretos de Blackwood</div>
-                <div class="link-cursivo is-size-5">Misterio • Terror</div>
-                <div class="my-2">👤 👤 👤</div>
-                <span class="tag tag-turno">Turno Libre • ¡Escribe ahora!</span>
-            </div>
-        </div>
-        <div class="column is-4">
-            <div class="tarjeta-libro" onclick="location.href='detalle.php?titulo=Las Sombras del Reloj&genero=Misterio'" style="cursor:pointer;">
-                <div class="portada-simulada"></div>
-                <div class="link-cursivo is-size-4">Las Sombras del Reloj</div>
-                <div class="link-cursivo is-size-5">Misterio</div>
-                <div class="my-2">👤 👤 👤</div>
-                <span class="tag tag-turno">Turno Libre • ¡Escribe ahora!</span>
-            </div>
-        </div>
-        <div class="column is-4">
-            <div class="tarjeta-libro" onclick="location.href='detalle.php?titulo=El Pacto de los Inmortales&genero=Terror - Fantasía'" style="cursor:pointer;">
-                <div class="portada-simulada"></div>
-                <div class="link-cursivo is-size-4">El Pacto de los Inmortales</div>
-                <div class="link-cursivo is-size-5">Terror • Fantasía</div>
-                <div class="my-2">👤 👤 👤</div>
-                <span class="tag tag-turno">Turno Libre • ¡Escribe ahora!</span>
-            </div>
-        </div>
-    <?php endif; ?>
-</div>
-
-<?php include('footer.php'); ?>
+fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>

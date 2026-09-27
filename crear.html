@@ -1,43 +1,74 @@
-<?php include('header.php'); ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Historia - Mil Plumas, Una Historia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
 
-<div class="columns is-centered">
-    <div class="column is-8">
-        <div class="caja-verde-formulario has-text-centered">
-            <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo l</h2>
-            <form action="procesar.php" method="POST">
-                <input type="hidden" name="accion" value="crear_historia">
-                
-                <div class="field has-text-left mb-3">
-                    <label class="label label-cursivo" for="crear-titulo">Título de la historia</label>
-                    <input id="crear-titulo" class="input input-estilo" type="text" name="titulo" placeholder="Título de la historia" required>
-                </div>
+<div class="libro-marco">
+    <div id="header"></div>
 
-                <div class="field has-text-left mb-3">
-                    <label class="label label-cursivo">Género</label>
-                    <div class="control">
-                        <input class="input input-estilo" type="text" name="genero" value="Fantasía" placeholder="Fantasía, Misterio, Terror..." required>
+    <div class="columns is-centered">
+        <div class="column is-8">
+            <div class="caja-verde-formulario has-text-centered">
+                <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo Libro</h2>
+                <form id="form-crear-historia" onsubmit="procesarCrearHistoria(event)">
+                    <div class="field has-text-left mb-3">
+                        <label class="label label-cursivo" for="crear-titulo">Título de la historia</label>
+                        <input id="crear-titulo" class="input input-estilo" type="text" name="titulo" placeholder="Título de la historia" required>
                     </div>
-                </div>
 
-                <div class="field has-text-left mb-3">
-                    <label class="label label-cursivo">Configuración de Reglas (Horas / Máx Palabras)</label>
-                    <div class="columns">
-                        <div class="column is-6"><input class="input input-estilo" type="number" name="tiempo" value="24"></div>
-                        <div class="column is-6"><input class="input input-estilo" type="number" name="limite" value="300"></div>
+                    <div class="field has-text-left mb-3">
+                        <label class="label label-cursivo" for="crear-genero">Género</label>
+                        <div class="control">
+                            <input id="crear-genero" class="input input-estilo" type="text" name="genero" value="Fantasía" placeholder="Fantasía, Misterio, Terror..." required>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field has-text-left mb-4">
-                    <label class="label label-cursivo" for="crear-capitulo">Primer capítulo / inicio de la historia</label>
-                    <textarea id="crear-capitulo" class="textarea textarea-estilo" name="primer_capitulo" rows="3" required></textarea>
-                </div>
+                    <div class="field has-text-left mb-3">
+                        <label class="label label-cursivo">Configuración de Reglas (Horas / Máx Palabras)</label>
+                        <div class="columns">
+                            <div class="column is-6">
+                                <input id="crear-tiempo" class="input input-estilo" type="number" name="tiempo" value="24" title="Horas por turno">
+                            </div>
+                            <div class="column is-6">
+                                <input id="crear-limite" class="input input-estilo" type="number" name="limite" value="300" title="Límite de palabras">
+                            </div>
+                        </div>
+                    </div>
 
-                <button type="submit" onclick="return validarCrearHistoria(event)" class="btn btn-primario">Crear Historia</button>
-            </form>
+                    <div class="field has-text-left mb-4">
+                        <label class="label label-cursivo" for="crear-capitulo">Primer capítulo / inicio de la historia</label>
+                        <textarea id="crear-capitulo" class="textarea textarea-estilo" name="primer_capitulo" rows="3" placeholder="Escribe al menos 10 palabras para iniciar el primer turno..." required></textarea>
+                    </div>
 
-            <script src="js/crear.js"></script>
+                    <button type="submit" class="btn btn-primario">Crear Historia</button>
+                </form>
+            </div>
         </div>
     </div>
+
+    <div id="footer"></div>
 </div>
 
-<?php include('footer.php'); ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/crear.js"></script>
+<script>
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
+    });
+
+fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>

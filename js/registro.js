@@ -59,3 +59,24 @@ function validarRegistro(event) {
 
     return true;
 }
+
+function procesarRegistro(event) {
+    if (event) event.preventDefault();
+    if (!validarRegistro(event)) return false;
+
+    const usuario = document.getElementById("reg-usuario").value.trim();
+    localStorage.setItem("usuario_activo", usuario);
+
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "¡Cuenta creada con éxito!",
+        text: `Bienvenido a Mil Plumas, @${usuario}.`,
+        showConfirmButton: false,
+        timer: 1200
+    }).then(() => {
+        window.location.href = "perfil.html";
+    });
+
+    return false;
+}

@@ -1,29 +1,58 @@
-<?php include('header.php'); ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Mil Plumas, Una Historia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
 
-<div class="columns is-centered">
-    <div class="column is-6">
-        <div class="caja-verde-formulario has-text-centered">
-            <h2 class="hero-titulo is-size-2 mb-4">Inicio De Sesion</h2>
-            <form action="procesar.php" method="POST">
-                <input type="hidden" name="accion" value="login">
-                <div class="field has-text-left mb-3">
-                    <label class="label label-cursivo">Usuario *</label>
-                    <div class="control">
-                        <input id="login-usuario" class="input input-estilo" type="text" name="nombre_usuario" placeholder="Ingresa tu nombre de usuario" required>
+<div class="libro-marco">
+    <div id="header"></div>
+
+    <div class="columns is-centered">
+        <div class="column is-6">
+            <div class="caja-verde-formulario has-text-centered">
+                <h2 class="hero-titulo is-size-2 mb-4">Inicio De Sesión</h2>
+                <form id="form-login" onsubmit="procesarLogin(event)">
+                    <div class="field has-text-left mb-3">
+                        <label class="label label-cursivo" for="login-usuario">Usuario *</label>
+                        <div class="control">
+                            <input id="login-usuario" class="input input-estilo" type="text" name="nombre_usuario" placeholder="Ingresa tu nombre de usuario" required>
+                        </div>
                     </div>
-                </div>
-                <div class="field has-text-left mb-4">
-                    <label class="label label-cursivo">Contraseña *</label>
-                    <div class="control">
-                        <input id="login-pass" class="input input-estilo" type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
+                    <div class="field has-text-left mb-4">
+                        <label class="label label-cursivo" for="login-pass">Contraseña *</label>
+                        <div class="control">
+                            <input id="login-pass" class="input input-estilo" type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" onclick="return validarLogin(event)" class="btn btn-primario">Iniciar Sesión</button>
-                <a href="registro.php" class="is-block mt-3 link-cursivo is-size-5">¿No tienes una cuenta?</a>
-            </form>
-            <script src="js/login.js"></script>
+                    <button type="submit" class="btn btn-primario">Iniciar Sesión</button>
+                    <a href="registro.html" class="is-block mt-3 link-cursivo is-size-5">¿No tienes una cuenta?</a>
+                </form>
+            </div>
         </div>
     </div>
+
+    <div id="footer"></div>
 </div>
 
-<?php include('footer.php'); ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/login.js"></script>
+<script>
+fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header").innerHTML = data;
+    });
+
+fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>

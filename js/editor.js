@@ -31,15 +31,6 @@ function validarEditor(event) {
         return false;
     }
 
-    Swal.fire({
-        title: `Publicando Turno #${turno}...`,
-        text: 'Guardando tu contribución y pasando la pluma...',
-        allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
-    });
-
     return true;
 }
 

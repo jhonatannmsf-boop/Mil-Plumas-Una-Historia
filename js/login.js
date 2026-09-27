@@ -16,3 +16,24 @@ function validarLogin(event) {
     }
     return true;
 }
+
+function procesarLogin(event) {
+    if (event) event.preventDefault();
+    if (!validarLogin(event)) return false;
+
+    const usuario = document.getElementById("login-usuario").value.trim();
+    localStorage.setItem("usuario_activo", usuario);
+
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "¡Bienvenido de vuelta!",
+        text: `Hola, @${usuario}. Has iniciado sesión.`,
+        showConfirmButton: false,
+        timer: 1200
+    }).then(() => {
+        window.location.href = "perfil.html";
+    });
+
+    return false;
+}
