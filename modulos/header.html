@@ -1,15 +1,24 @@
 <nav class="level mb-5">
-    <div class="level-left">
-        <a href="index.html" class="logo-titulo">Mil Plumas, Una <br> Historia</a>
-    </div>
-    <div class="level-item" style="gap: 24px;">
-        <a href="explorar.html" class="link-cursivo">Explorar</a>
-        <a href="crear.html" class="link-cursivo">Crear</a>
-        <a href="perfil.html" class="link-cursivo">Perfil</a>
-        <a onclick="history.back()" class="link-cursivo" style="cursor:pointer;">Anterior</a>
-    </div>
-    <div class="level-right" style="gap: 20px;">
-        <a href="login.html" class="link-cursivo">Iniciar Sesión</a>
-        <a href="registro.html" class="link-cursivo">Registrarse</a>
-    </div>
+  <div class="level-left">
+    <a href="index.html" class="logo-titulo">Mil Plumas, Una <br> Historia</a>
+  </div>
+  
+  <div class="level-item" style="gap: 24px;">
+    <a href="explorar.html" class="link-cursivo">Explorar</a>
+    <a href="crear.html" class="link-cursivo">Crear</a>
+    <a href="perfil.html" class="link-cursivo">Perfil</a>
+    <a onclick="history.back()" class="link-cursivo" style="cursor:pointer;">Anterior</a>
+  </div>
+
+  
+  <div id="nav-guest" class="level-right" style="gap: 20px;">
+    <a href="login.html" class="link-cursivo">Iniciar Sesión</a>
+    <a href="registro.html" class="link-cursivo">Registrarse</a>
+  </div>
+
+  
+  <div id="nav-user" class="level-right" style="gap: 20px; display: none !important;">
+    <span id="user-greeting" class="link-cursivo"></span>
+    <a href="index.html" id="btn-logout" class="link-cursivo">Cerrar Sesión</a>
+  </div>
 </nav>
