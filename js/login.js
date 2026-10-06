@@ -37,3 +37,21 @@ function procesarLogin(event) {
 
     return false;
 }
+
+function procesarLogin(event) {
+  event.preventDefault(); 
+
+  const usuarioInput = document.getElementById('login-usuario');
+  const usuario = usuarioInput ? usuarioInput.value.trim() : '';
+
+  if (usuario !== '') {
+    
+    localStorage.setItem('sesionIniciada', 'true');
+    localStorage.setItem('usuarioNombre', usuario);
+
+    
+    window.location.href = 'index.html';
+  } else {
+    alert('Por favor ingresa un usuario');
+  }
+}
