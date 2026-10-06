@@ -54,3 +54,19 @@ function actualizarContador() {
         }
     }
 }
+
+function publicarTurno(event) {
+    if (event) event.preventDefault();
+    if (!validarEditor(event)) return false;
+
+    localStorage.removeItem('borrador_texto');
+
+    Swal.fire({
+        icon: 'success',
+        title: '¡Turno Publicado!',
+        text: 'Tu texto fue enviado y se pasó la pluma.',
+        confirmButtonColor: '#5b8c60'
+    }).then(() => {
+        window.location.href = "detalle.html";
+    });
+}
