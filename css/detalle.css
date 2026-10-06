@@ -1,67 +1,41 @@
-.caja-detalle-izq {
-    background-color: #9acb9e;
-    border-radius: 35px;
-    padding: 25px;
+.hilo-contenedor {
+  position: relative;
+  padding-left: 35px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.linea-tiempo-caja {
-    background-color: #9acb9e;
-    border-radius: 30px;
-    padding: 20px;
+.hilo-contenedor::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 12px;
+  width: 3px;
+  background-color: #88BBA4;
+  border-radius: 2px;
 }
 
-.lista-turnos-scroll {
-    max-height: 270px;
-    overflow-y: auto;
-    padding-right: 5px;
+.turno-item {
+  position: relative;
+  margin-bottom: 2rem;
 }
 
-.lista-turnos-scroll::-webkit-scrollbar {
-    width: 6px;
-}
-.lista-turnos-scroll::-webkit-scrollbar-thumb {
-    background-color: #7ea882;
-    border-radius: 10px;
-}
-
-.item-linea-tiempo {
-    background-color: #e2f1e4;
-    border-radius: 20px;
-    padding: 10px 16px;
-    margin-top: 10px;
-    font-weight: 700;
+.punto-conector {
+  position: absolute;
+  left: -29px;
+  top: 6px;
+  width: 13px;
+  height: 13px;
+  background-color: #2D4A3E;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  z-index: 1;
 }
 
-.item-turno-interactivo {
-    cursor: pointer;
-    transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
-    border: 1px solid transparent;
-}
-
-.item-turno-interactivo:hover {
-    background-color: #c9e8cd;
-    border-color: #5b8c60;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-}
-
-.item-turno-interactivo:active {
-    transform: scale(0.98);
-}
-
-.tag-leer-turno {
-    background-color: #5b8c60;
-    color: #ffffff !important;
-    border-radius: 12px;
-    padding: 2px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-}
-
-.item-proximo-turno {
-    background-color: #d1eccf;
-    border: 2px dashed #5b8c60;
-    color: #1b261b;
-    opacity: 0.92;
+.targeta-turno {
+  background-color: rgba(255, 255, 255, 0.45);
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
 }
