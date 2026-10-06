@@ -1,12 +1,12 @@
 @import url('https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
-@import url('css/general.css');
-@import url('css/landing.css');
-@import url('css/formularios.css');
-@import url('css/explorar.css');
-@import url('css/detalle.css');
-@import url('css/editor.css');
-@import url('css/perfil.css');
+@import url('general.css');
+@import url('landing.css');
+@import url('formularios.css');
+@import url('explorar.css');
+@import url('detalle.css');
+@import url('editor.css');
+@import url('perfil.css');
 
 * {
     font-family: 'Nunito', sans-serif;
@@ -14,7 +14,7 @@
 
 body {
     background-color: #ede9d8;
-    background-image: url('img/fondo.png');
+    background-image: url('../img/fondo.png');
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -24,10 +24,9 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    color: #1b261b;                      /* texto negro global */
+    color: #1b261b;                      
 }
 
-/* Forzar texto negro en todos los elementos */
 body, p, span, div, label, a, h1, h2, h3, h4, h5, h6,
 li, td, th, strong, em, small, blockquote,
 .content, .title, .subtitle {
@@ -74,11 +73,7 @@ li, td, th, strong, em, small, blockquote,
     font-weight: 600;
 }
 
-/* ═══════════════════════════════════════════
-   BOTONES — Diseño unificado
-   ═══════════════════════════════════════════ */
 
-/* Base compartida para todos los botones del sitio */
 .btn-principal,
 .btn-verde-suave,
 .btn-secundario,
@@ -88,14 +83,14 @@ li, td, th, strong, em, small, blockquote,
     border-radius: 20px !important;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-    color: #1b261b !important;          /* texto negro siempre */
+    color: #1b261b !important;          
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
 }
 
-/* Verde principal (CTA fuerte) */
+
 .btn-principal {
     background-color: #aed9b4 !important;
     border: none !important;
@@ -112,7 +107,7 @@ li, td, th, strong, em, small, blockquote,
     transform: scale(0.97);
 }
 
-/* Verde suave (acción secundaria) */
+
 .btn-verde-suave {
     background-color: #d3ebd6 !important;
     border: 1px solid #7ea882 !important;
@@ -158,13 +153,13 @@ li, td, th, strong, em, small, blockquote,
 
 .input-estilo, .textarea-estilo {
     background-color: #e2f1e4 !important;
-    color: #1b261b !important;           /* texto negro siempre visible */
+    color: #1b261b !important;          
     border: none !important;
     border-radius: 25px !important;
     box-shadow: none !important;
 }
 .input-estilo::placeholder, .textarea-estilo::placeholder {
-    color: #5a7a5c !important;           /* placeholder visible pero más suave */
+    color: #5a7a5c !important;           
     opacity: 1;
 }
 
@@ -244,7 +239,7 @@ li, td, th, strong, em, small, blockquote,
     display: none;
 }
 
-/* Responsive para dispositivos móviles */
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
