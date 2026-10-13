@@ -11,12 +11,11 @@
 
 <div class="libro-marco">
     <div id="header"></div>
-
     <div class="columns is-centered">
         <div class="column is-6">
             <div class="caja-verde-formulario has-text-centered">
                 <h2 class="hero-titulo is-size-2 mb-4">Inicio De Sesión</h2>
-                <form id="form-login" onsubmit="procesarLogin(event)">
+                <form action="../php/login.php" method="POST">
                     <div class="field has-text-left mb-3">
                         <label class="label label-cursivo" for="login-usuario">Usuario *</label>
                         <div class="control">
@@ -29,7 +28,7 @@
                             <input id="login-pass" class="input input-estilo" type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primario">Iniciar Sesión</button>
+                    <button type="submit" class="btn btn-primario" id="iniciar_sesion" name="iniciar_sesion">Iniciar Sesión</button>
                     <div class="mt-4">
                         <a href="registro.html" class="is-block link-cursivo is-size-5">¿No tienes una cuenta? Registrate</a>
                     </div>

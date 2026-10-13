@@ -1,9 +1,10 @@
 function validarCrearHistoria(event) {
-    let titulo = document.getElementById("crear-titulo").value.trim();
-    let primerCap = document.getElementById("crear-capitulo").value.trim();
+    event.preventDefault();
+    let titulo = document.getElementById("crear_titulo").value.trim();
+    let primerCap = document.getElementById("crear_primer_capitulo").value.trim();
 
     if (!titulo || !primerCap) {
-        if (event) event.preventDefault();
+       
         Swal.fire({
             position: "center",
             icon: "error",
@@ -16,7 +17,7 @@ function validarCrearHistoria(event) {
     }
 
     if (titulo.length < 4) {
-        if (event) event.preventDefault();
+        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -30,7 +31,7 @@ function validarCrearHistoria(event) {
 
     let palabras = primerCap.split(/\s+/).filter(Boolean).length;
     if (palabras < 10) {
-        if (event) event.preventDefault();
+        
         Swal.fire({
             position: "center",
             icon: "error",

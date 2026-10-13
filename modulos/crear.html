@@ -16,16 +16,16 @@
         <div class="column is-8">
             <div class="caja-verde-formulario has-text-centered">
                 <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo Libro</h2>
-                <form id="form-crear-historia" onsubmit="procesarCrearHistoria(event)">
+                <form action="../crear.php" method="POST">
                     <div class="field has-text-left mb-3">
-                        <label class="label label-cursivo" for="crear-titulo">Título de la historia</label>
-                        <input id="crear-titulo" class="input input-estilo" type="text" name="titulo" placeholder="Título de la historia" required>
+                        <label class="label label-cursivo" for="crear_titulo">Título de la historia</label>
+                        <input id="crear_titulo" class="input input-estilo" type="text" name="crear_titulo" placeholder="Título de la historia" required>
                     </div>
 
                     <div class="field has-text-left mb-3">
-                        <label class="label label-cursivo" for="crear-genero">Género</label>
+                        <label class="label label-cursivo" for="crear_genero">Género</label>
                         <div class="control">
-                            <input id="crear-genero" class="input input-estilo" type="text" name="genero" value="Fantasía" placeholder="Fantasía, Misterio, Terror..." required>
+                            <input id="crear_genero" class="input input-estilo" type="text" name="crear_genero" value="Fantasía" placeholder="Fantasía, Misterio, Terror..." required>
                         </div>
                     </div>
 
@@ -33,20 +33,20 @@
                         <label class="label label-cursivo">Configuración de Reglas (Horas / Máx Palabras)</label>
                         <div class="columns">
                             <div class="column is-6">
-                                <input id="crear-tiempo" class="input input-estilo" type="number" name="tiempo" value="24" title="Horas por turno">
+                                <input id="crear_tiempo" class="input input-estilo" type="number" name="crear_tiempo" value="24" title="Horas por turno">
                             </div>
                             <div class="column is-6">
-                                <input id="crear-limite" class="input input-estilo" type="number" name="limite" value="300" title="Límite de palabras">
+                                <input id="crear_limite" class="input input-estilo" type="number" name="crear_limite" value="300" title="Límite de palabras">
                             </div>
                         </div>
                     </div>
 
                     <div class="field has-text-left mb-4">
-                        <label class="label label-cursivo" for="crear-capitulo">Primer capítulo / inicio de la historia</label>
-                        <textarea id="crear-capitulo" class="textarea textarea-estilo" name="primer_capitulo" rows="3" placeholder="Escribe al menos 10 palabras para iniciar el primer turno..." required></textarea>
+                        <label class="label label-cursivo" for="crear_primer_capitulo">Primer capítulo / inicio de la historia</label>
+                        <textarea id="crear_primer_capitulo" class="textarea textarea-estilo" name="crear_primer_capitulo" rows="3" placeholder="Escribe al menos 10 palabras para iniciar el primer turno..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primario">Crear Historia</button>
+                    <button type="submit" class="btn btn-primario" name="crear_historia" id="crear_historia">Crear Historia</button>
                 </form>
             </div>
         </div>

@@ -16,7 +16,7 @@
         <div class="column is-6">
             <div class="caja-verde-formulario has-text-centered">
                 <h2 class="hero-titulo is-size-2 mb-4">Crear cuenta</h2>
-                <form id="form-registro" onsubmit="procesarRegistro(event)">
+                <form action="../php/registro.php" method="POST">
                     <div class="field has-text-left mb-3">
                         <label class="label label-cursivo" for="reg-usuario">Nombre de usuario *</label>
                         <div class="control">
@@ -35,7 +35,7 @@
                             <input id="reg-pass" class="input input-estilo" type="password" name="contrasena" placeholder="ejemplo2345@" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primario">Registrarse</button>
+                    <button type="submit" class="btn btn-primario" id="registrarse" name="registrarse">Registrarse</button>
                     <div class="mt-4">
                         <a href="login.html" class="is-block link-cursivo is-size-5">¿Ya tienes una cuenta? Inicia Sesión</a>
                     </div>

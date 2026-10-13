@@ -1,4 +1,5 @@
 function validarRegistro(event) {
+    event.preventDefault();
     let usuario = document.getElementById("reg-usuario").value.trim();
     let correo = document.getElementById("reg-correo").value.trim();
     let pass = document.getElementById("reg-pass").value;
@@ -6,7 +7,7 @@ function validarRegistro(event) {
     let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!usuario || !correo || !pass) {
-        if (event) event.preventDefault();
+        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -19,7 +20,7 @@ function validarRegistro(event) {
     }
 
     if (usuario.length < 3) {
-        if (event) event.preventDefault();
+        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -32,7 +33,7 @@ function validarRegistro(event) {
     }
 
     if (!regexCorreo.test(correo)) {
-        if (event) event.preventDefault();
+        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -45,7 +46,7 @@ function validarRegistro(event) {
     }
 
     if (pass.length < 8) {
-        if (event) event.preventDefault();
+        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -58,6 +59,7 @@ function validarRegistro(event) {
     }
 
     return true;
+    
 }
 
 function procesarRegistro(event) {
@@ -80,3 +82,5 @@ function procesarRegistro(event) {
 
     return false;
 }
+
+document.getElementById("registrarse").onclick = procesarRegistro;
