@@ -1,12 +1,10 @@
-
+CREATE DATABASE IF NOT EXISTS mil_plumas;
+USE mil_plumas;
 CREATE TABLE usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
-    nombre_completo VARCHAR(100) NULL,
     correo VARCHAR(100) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
-    biografia VARCHAR(255) DEFAULT 'Amante de las buenas historias',
-    avatar VARCHAR(255) NULL,
     fecha_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -18,30 +16,14 @@ CREATE TABLE genero (
 CREATE TABLE historia (
     id_historia INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
-    sinopsis TEXT NOT NULL,
     id_usuario_creador INT NOT NULL,
-    id_genero_principal INT NULL,
     tiempo_horas_turno INT NOT NULL DEFAULT 3,       
     limite_palabras INT NOT NULL DEFAULT 300,          
     estado ENUM('activa', 'completada', 'pausada') NOT NULL DEFAULT 'activa',
     ia_resumen TEXT NULL,                              
-    portada VARCHAR(255) NULL,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_historia_creador FOREIGN KEY (id_usuario_creador) 
-        REFERENCES usuario(id_usuario) ON DELETE CASCADE,
-    CONSTRAINT fk_historia_genero FOREIGN KEY (id_genero_principal) 
-        REFERENCES genero(id_genero) ON DELETE SET NULL
-);
-
-
-CREATE TABLE historia_genero (
-    id_historia INT NOT NULL,
-    id_genero INT NOT NULL,
-    PRIMARY KEY (id_historia, id_genero),
-    CONSTRAINT fk_hg_historia FOREIGN KEY (id_historia) 
-        REFERENCES historia(id_historia) ON DELETE CASCADE,
-    CONSTRAINT fk_hg_genero FOREIGN KEY (id_genero) 
-        REFERENCES genero(id_genero) ON DELETE CASCADE
+        REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE capitulo (
