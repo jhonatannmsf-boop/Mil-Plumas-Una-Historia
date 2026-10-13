@@ -18,7 +18,7 @@
         <span id="contador-palabras">0 / 300 palabras</span>
     </div>
 
-    <form onsubmit="publicarTurno(event)">
+    <form action="../editor.php" method="POST" id="form-editor">
         <div class="columns">
             <div class="column is-6">
                 <div class="caja-editor">
@@ -38,7 +38,8 @@
                     <div class="aviso-turno-editor mb-2">
                         Escribe tu contribución para continuar el relato (mín. 10 palabras, máx. 300 palabras).
                     </div>
-                    <textarea id="texto-capitulo" 
+                    <textarea id="texto_capitulo"
+                              name="texto_capitulo"
                               class="textarea textarea-estilo" 
                               style="height:210px; resize:none;" 
                               data-limite="300"
@@ -48,7 +49,7 @@
                               required></textarea>
 
                     <div class="is-flex is-justify-content-space-between mt-3">                 
-                        <button type="submit" class="button btn-principal">
+                        <button type="submit" class="button btn-principal" id="publicar_turno" name="publicar_turno">
                             Publicar Turno
                         </button>
                     </div>
