@@ -1,11 +1,10 @@
 document.querySelectorAll(".boton-like").forEach((boton) => {
-
     let likes = 0;
     let dioLike = false;
-
     const contador = boton.querySelector(".contador");
 
-    boton.addEventListener("click", () => {
+    boton.addEventListener("click", (e) => {
+        e.stopPropagation();
         if (!dioLike) {
             likes++;
             dioLike = true;
@@ -16,7 +15,8 @@ document.querySelectorAll(".boton-like").forEach((boton) => {
             boton.classList.remove("activo");
         }
 
-        contador.textContent = likes;
+        if (contador) {
+            contador.textContent = likes;
+        }
     });
-
 });
