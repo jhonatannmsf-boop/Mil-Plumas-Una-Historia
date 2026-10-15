@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explorar Libros - Mil Plumas, Una Historia</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/explorar.css">
 </head>
 <body>
 
@@ -15,40 +15,45 @@
     <input class="input input-estilo mb-4" type="text" placeholder="Buscar Libros o géneros...">
     
     <div class="is-flex is-justify-content-space-between mb-5 px-5">
-        <a href="#" class="link-cursivo">Todos</a>
-        <a href="#" class="link-cursivo">Fantasía</a>
-        <a href="#" class="link-cursivo">Misterio</a>
-        <a href="#" class="link-cursivo">Terror</a>
+        <span class="link-cursivo" style="cursor: pointer;">Todos</span>
+        <span class="link-cursivo" style="cursor: pointer;">Fantasía</span>
+        <span class="link-cursivo" style="cursor: pointer;">Misterio</span>
+        <span class="link-cursivo" style="cursor: pointer;">Terror</span>
     </div>
 
     <div class="columns is-multiline">
         <div class="column is-4">
-            <div class="tarjeta-libro" style="cursor:pointer;">
-                
-                <div class="portada-simulada"></div>
-                <div class="link-cursivo is-size-4" onclick="location.href='detalle.html?id=1&titulo=Secretos de Blackwood&genero=Misterio - Terror'" >Secretos de Blackwood</div>
+            <div class="tarjeta-libro">
+                <div class="portada-simulada" onclick="window.location.href='detalle.html'"></div>
+                <div>
+                    <a href="detalle.html" class="link-cursivo is-size-4">Secretos de Blackwood</a>
+                </div>
                 <div class="is-size-5">Misterio • Terror</div>
-                <button id="btn-like" class="boton-like">
+                <button class="boton-like">
                     ❤️ Me gusta <span class="contador">0</span>
                 </button>
             </div>
         </div>
         <div class="column is-4">
-            <div class="tarjeta-libro" style="cursor:pointer;">
-                <div class="portada-simulada"></div>
-                <div class="link-cursivo is-size-4" onclick="location.href='detalle.html?id=2&titulo=Las Sombras del Reloj&genero=Misterio'">Las Sombras del Reloj</div>
+            <div class="tarjeta-libro">
+                <div class="portada-simulada" onclick="window.location.href='detalle.html'"></div>
+                <div>
+                    <a href="detalle.html" class="link-cursivo is-size-4">Las Sombras del Reloj</a>
+                </div>
                 <div class="is-size-5">Misterio</div>
-                <button id="btn-like" class="boton-like">
+                <button class="boton-like">
                     ❤️ Me gusta <span class="contador">0</span>
                 </button>
             </div>
         </div>
         <div class="column is-4">
-            <div class="tarjeta-libro"  style="cursor:pointer;">
-                <div class="portada-simulada"></div>
-                <div class="link-cursivo is-size-4" onclick="location.href='detalle.html?id=3&titulo=El Pacto de los Inmortales&genero=Terror - Fantasía'">El Pacto de los Inmortales</div>
+            <div class="tarjeta-libro">
+                <div class="portada-simulada" onclick="window.location.href='detalle.html'"></div>
+                <div>
+                    <a href="detalle.html" class="link-cursivo is-size-4">El Pacto de los Inmortales</a>
+                </div>
                 <div class="is-size-5">Terror • Fantasía</div>
-                <button id="btn-like" class="boton-like">
+                <button class="boton-like">
                     ❤️ Me gusta <span class="contador">0</span>
                 </button>
             </div>

@@ -1,3 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #ede9d8;
+    background-image: url('../img/fondo.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #1b261b;
+}
+
+body, p, span, div, label, a, h1, h2, h3, h4, h5, h6,
+li, td, th, strong, em, small, blockquote,
+.content, .title, .subtitle {
+    color: #1b261b;
+}
+
+.libro-marco {
+    background-color: transparent;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 620px;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    padding: 25px 40px;
+    margin: auto;
+}
+
+.link-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+    text-decoration: underline !important;
+}
+
 .barra-editor {
     background-color: #9acb9e;
     border-radius: 25px;
@@ -34,52 +82,55 @@
     border-left: 4px solid #5b8c60;
 }
 
-.pestanas-editor {
-    display: flex;
-    gap: 8px;
-    border-bottom: 2px solid #b9d7b3;
-    padding-bottom: 8px;
+.textarea-estilo {
+    background-color: #e2f1e4 !important;
+    color: #1b261b !important;
+    border: none !important;
+    border-radius: 25px !important;
+    box-shadow: none !important;
 }
 
-.btn-tab {
-    background-color: #cce7d0;
-    border: 1px solid #9acb9e;
-    border-radius: 15px !important;
-    padding: 6px 16px;
+.textarea-estilo::placeholder {
+    color: #5a7a5c !important;
+    opacity: 1;
+}
+
+.btn-principal {
+    background-color: #aed9b4 !important;
+    border: none !important;
     font-family: 'Caveat', cursive !important;
+    font-size: 26px !important;
     font-weight: 700 !important;
-    font-size: 16px;
-    color: #1b261b !important;           /* texto negro */
+    border-radius: 20px !important;
+    padding: 6px 28px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    color: #1b261b !important;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
-.btn-tab:hover {
-    background-color: #b3ddb9;
-    color: #1b261b !important;
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+.btn-principal:hover {
+    background-color: #8ec69b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18) !important;
 }
 
-.btn-tab.is-active {
-    background-color: #8ec693;
-    color: #1b261b !important;
-    border: 2px solid #5b8c60;
-    font-weight: 800 !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+.btn-principal:active {
+    transform: scale(0.97);
 }
 
-.lista-turnos-editor {
-    max-height: 210px;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-
-.lista-turnos-editor::-webkit-scrollbar {
-    width: 5px;
-}
-
-.lista-turnos-editor::-webkit-scrollbar-thumb {
-    background-color: #7ea882;
-    border-radius: 10px;
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        background-attachment: scroll;
+        align-items: flex-start;
+    }
+    .libro-marco {
+        padding: 15px 10px;
+        min-height: auto;
+    }
 }

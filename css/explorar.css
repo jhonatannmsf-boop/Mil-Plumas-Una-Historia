@@ -1,3 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #ede9d8;
+    background-image: url('../img/fondo.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #1b261b;
+}
+
+body, p, span, div, label, a, h1, h2, h3, h4, h5, h6,
+li, td, th, strong, em, small, blockquote,
+.content, .title, .subtitle {
+    color: #1b261b;
+}
+
+.libro-marco {
+    background-color: transparent;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 620px;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    padding: 25px 40px;
+    margin: auto;
+}
+
+.link-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+    text-decoration: underline !important;
+}
+
+.link-cursivo:hover {
+    color: #35583b !important;
+}
+
+.input-estilo {
+    background-color: #e2f1e4 !important;
+    color: #1b261b !important;
+    border: none !important;
+    border-radius: 25px !important;
+    box-shadow: none !important;
+}
+
+.input-estilo::placeholder {
+    color: #5a7a5c !important;
+    opacity: 1;
+}
+
 .tarjeta-libro {
     background-color: #8bbd8e;
     border-radius: 30px;
@@ -5,6 +70,12 @@
     text-align: center;
     color: #1b261b;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-libro:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .portada-simulada {
@@ -15,26 +86,36 @@
     margin-bottom: 10px;
 }
 
-.tag-turno {
-    background-color: #e2f1e4 !important;
-    color: #1b261b !important;
-    font-weight: 700 !important;
-    border-radius: 15px !important;
-}
 .boton-like {
     background-color: #b9d7b3;
     border: none;
     border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 1.1rem;
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1b261b;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+    margin-top: 10px;
 }
 
 .boton-like:hover {
     background-color: #a4c89d;
+    transform: scale(1.05);
 }
 
 .boton-like.activo {
     background-color: #ffb6c1;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        background-attachment: scroll;
+        align-items: flex-start;
+    }
+    .libro-marco {
+        padding: 15px 10px;
+        min-height: auto;
+    }
 }
