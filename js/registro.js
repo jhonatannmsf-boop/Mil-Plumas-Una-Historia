@@ -1,5 +1,5 @@
 function validarRegistro(event) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     let usuario = document.getElementById("reg-usuario").value.trim();
     let correo = document.getElementById("reg-correo").value.trim();
     let pass = document.getElementById("reg-pass").value;
@@ -7,7 +7,6 @@ function validarRegistro(event) {
     let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!usuario || !correo || !pass) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -20,7 +19,6 @@ function validarRegistro(event) {
     }
 
     if (usuario.length < 3) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -33,7 +31,6 @@ function validarRegistro(event) {
     }
 
     if (!regexCorreo.test(correo)) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -46,7 +43,6 @@ function validarRegistro(event) {
     }
 
     if (pass.length < 8) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -59,7 +55,6 @@ function validarRegistro(event) {
     }
 
     return true;
-    
 }
 
 function procesarRegistro(event) {
@@ -67,6 +62,8 @@ function procesarRegistro(event) {
     if (!validarRegistro(event)) return false;
 
     const usuario = document.getElementById("reg-usuario").value.trim();
+    localStorage.setItem("sesionIniciada", "true");
+    localStorage.setItem("usuarioNombre", usuario);
     localStorage.setItem("usuario_activo", usuario);
 
     Swal.fire({
@@ -83,4 +80,12 @@ function procesarRegistro(event) {
     return false;
 }
 
-document.getElementById("registrarse").onclick = procesarRegistro;
+const formRegistro = document.getElementById("form-registro");
+if (formRegistro) {
+    formRegistro.addEventListener("submit", procesarRegistro);
+}
+
+const btnRegistrarse = document.getElementById("registrarse");
+if (btnRegistrarse) {
+    btnRegistrarse.addEventListener("click", procesarRegistro);
+}

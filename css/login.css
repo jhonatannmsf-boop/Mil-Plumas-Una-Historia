@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #ede9d8;
+    background-image: url('../img/fondo.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #1b261b;
+}
+
+body, p, span, div, label, a, h1, h2, h3, h4, h5, h6,
+li, td, th, strong, em, small, blockquote,
+.content, .title, .subtitle {
+    color: #1b261b;
+}
+
+.libro-marco {
+    background-color: transparent;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 620px;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    padding: 25px 40px;
+    margin: auto;
+}
+
+.hero-titulo {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: #1b261b;
+}
+
+.link-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+    text-decoration: underline !important;
+}
+
+.caja-verde-formulario {
+    background-color: #9acb9e;
+    border-radius: 35px;
+    padding: 30px 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.label-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+}
+
+.input-estilo {
+    background-color: #e2f1e4 !important;
+    color: #1b261b !important;
+    border: none !important;
+    border-radius: 25px !important;
+    box-shadow: none !important;
+}
+
+.input-estilo::placeholder {
+    color: #5a7a5c !important;
+    opacity: 1;
+}
+
+.btn-primario {
+    font-family: 'Caveat', cursive !important;
+    font-weight: 700 !important;
+    border-radius: 20px !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    color: #1b261b !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #aed9b4 !important;
+    border: none !important;
+    font-size: 26px !important;
+    padding: 6px 28px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primario:hover {
+    background-color: #8ec69b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.btn-primario:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        background-attachment: scroll;
+        align-items: flex-start;
+    }
+    .libro-marco {
+        padding: 15px 10px;
+        min-height: auto;
+    }
+    .hero-titulo {
+        font-size: 32px !important;
+    }
+}
