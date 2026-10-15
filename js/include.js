@@ -1,17 +1,23 @@
 fetch("header.html")
   .then(response => response.text())
   .then(data => {
-    document.getElementById("header").innerHTML = data;
-    
-    
-    gestionarSesionNav();
-  });
+    const headerEl = document.getElementById("header");
+    if (headerEl) {
+      headerEl.innerHTML = data;
+      gestionarSesionNav();
+    }
+  })
+  .catch(err => console.warn("No se pudo cargar header.html:", err));
 
 fetch("footer.html")
   .then(response => response.text())
   .then(data => {
-    document.getElementById("footer").innerHTML = data;
-  });
+    const footerEl = document.getElementById("footer");
+    if (footerEl) {
+      footerEl.innerHTML = data;
+    }
+  })
+  .catch(err => console.warn("No se pudo cargar footer.html:", err));
 
 function gestionarSesionNav() {
   const navGuest = document.getElementById('nav-guest');
@@ -20,12 +26,12 @@ function gestionarSesionNav() {
   const btnLogout = document.getElementById('btn-logout');
 
   const sesionActiva = localStorage.getItem('sesionIniciada');
-  const usuarioNombre = localStorage.getItem('usuarioNombre');
+  const usuarioNombre = localStorage.getItem('usuarioNombre') || localStorage.getItem('usuario_activo');
 
-  if (sesionActiva === 'true') {
+  if (sesionActiva === 'true' && usuarioNombre) {
     if (navGuest) navGuest.style.setProperty('display', 'none', 'important');
     if (navUser) navUser.style.setProperty('display', 'flex', 'important');
-    if (userGreeting && usuarioNombre) {
+    if (userGreeting) {
       userGreeting.textContent = `Hola, ${usuarioNombre}`;
     }
   } else {
@@ -38,8 +44,8 @@ function gestionarSesionNav() {
       e.preventDefault();
       localStorage.removeItem('sesionIniciada');
       localStorage.removeItem('usuarioNombre');
+      localStorage.removeItem('usuario_activo');
       window.location.href = 'index.html';
     });
   }
-
 }

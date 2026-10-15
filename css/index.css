@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #ede9d8;
+    background-image: url('../img/fondo.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #1b261b;
+}
+
+body, p, span, div, label, a, h1, h2, h3, h4, h5, h6,
+li, td, th, strong, em, small, blockquote,
+.content, .title, .subtitle {
+    color: #1b261b;
+}
+
+.libro-marco {
+    background-color: transparent;
+    width: 100%;
+    max-width: 1050px;
+    min-height: 620px;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    padding: 25px 40px;
+    margin: auto;
+}
+
+.hero-titulo {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: #1b261b;
+}
+
+.hero-subtitulo {
+    color: #1b261b;
+    font-weight: 600;
+}
+
+.link-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+    text-decoration: underline !important;
+}
+
+.link-cursivo:hover {
+    color: #35583b !important;
+}
+
+.btn-principal {
+    background-color: #aed9b4 !important;
+    border: none !important;
+    font-family: 'Caveat', cursive !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+    border-radius: 20px !important;
+    padding: 6px 28px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    color: #1b261b !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-principal:hover {
+    background-color: #8ec69b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.btn-principal:active {
+    transform: scale(0.97);
+}
+
+.pasos-container {
+    background-color: #b9d7b3;
+    padding: 25px;
+    border-radius: 45px;
+}
+
+.paso-texto {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b;
+}
+
+.pasos-horizontal {
+    background-color: rgba(185, 215, 179, 0.65);
+    border-radius: 35px;
+    padding: 24px 30px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.pasos-horizontal span {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 8px 18px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.pasos-horizontal span:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        background-attachment: scroll;
+        align-items: flex-start;
+    }
+    .libro-marco {
+        padding: 15px 10px;
+        min-height: auto;
+    }
+    .hero-titulo {
+        font-size: 32px !important;
+    }
+    .hero-subtitulo {
+        font-size: 18px !important;
+    }
+}

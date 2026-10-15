@@ -1,13 +1,13 @@
 function validarEditor(event) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     let textarea = document.getElementById("texto_capitulo");
+    if (!textarea) return false;
+
     let contenido = textarea.value.trim();
     let palabras = contenido ? contenido.split(/\s+/).filter(Boolean).length : 0;
     let limite = textarea.dataset.limite ? parseInt(textarea.dataset.limite) : 300;
-    
 
     if (palabras < 10) {
-        
         Swal.fire({
             position: "center",
             icon: "warning",
@@ -19,7 +19,6 @@ function validarEditor(event) {
     }
 
     if (palabras > limite) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -29,18 +28,18 @@ function validarEditor(event) {
         });
         return false;
     }
-    else {
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "¡Turno Publicado!",
-            text: "Tu contribución ha sido enviada y se pasó la pluma.",
-            confirmButtonColor: '#5b8c60'
-        }).then(() => {
-            window.location.href = "detalle.html";
-        });
-        return true;
-    }
+
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "¡Turno Publicado!",
+        text: "Tu contribución ha sido enviada y se pasó la pluma.",
+        confirmButtonColor: '#5b8c60'
+    }).then(() => {
+        window.location.href = "detalle.html";
+    });
+
+    return false;
 }
 
 function actualizarContador() {
@@ -62,4 +61,12 @@ function actualizarContador() {
     }
 }
 
-document.getElementById("publicar_turno").onclick = validarEditor;
+const formEditor = document.getElementById("form-editor");
+if (formEditor) {
+    formEditor.addEventListener("submit", validarEditor);
+}
+
+const btnPublicarTurno = document.getElementById("publicar_turno");
+if (btnPublicarTurno) {
+    btnPublicarTurno.addEventListener("click", validarEditor);
+}

@@ -1,10 +1,8 @@
-function validarCrearHistoria(event) {
-    event.preventDefault();
+function validarCrearHistoria() {
     let titulo = document.getElementById("crear_titulo").value.trim();
     let primerCap = document.getElementById("crear_primer_capitulo").value.trim();
 
     if (!titulo || !primerCap) {
-       
         Swal.fire({
             position: "center",
             icon: "error",
@@ -17,7 +15,6 @@ function validarCrearHistoria(event) {
     }
 
     if (titulo.length < 4) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -31,7 +28,6 @@ function validarCrearHistoria(event) {
 
     let palabras = primerCap.split(/\s+/).filter(Boolean).length;
     if (palabras < 10) {
-        
         Swal.fire({
             position: "center",
             icon: "error",
@@ -48,7 +44,7 @@ function validarCrearHistoria(event) {
 
 function procesarCrearHistoria(event) {
     if (event) event.preventDefault();
-    if (!validarCrearHistoria(event)) return false;
+    if (!validarCrearHistoria()) return false;
 
     Swal.fire({
         icon: "success",
@@ -60,4 +56,14 @@ function procesarCrearHistoria(event) {
     });
 
     return false;
+}
+
+const formCrear = document.getElementById("form-crear");
+if (formCrear) {
+    formCrear.addEventListener("submit", procesarCrearHistoria);
+}
+
+const btnCrearHistoria = document.getElementById("crear_historia");
+if (btnCrearHistoria) {
+    btnCrearHistoria.addEventListener("click", procesarCrearHistoria);
 }

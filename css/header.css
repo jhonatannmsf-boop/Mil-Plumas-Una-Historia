@@ -1,0 +1,38 @@
+/* header.css - Estilos específicos para la barra de navegación / header */
+.logo-titulo {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1b261b;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1.1;
+    display: inline-block;
+}
+
+.logo-titulo:hover {
+    color: #35583b;
+}
+
+.link-cursivo {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1b261b !important;
+    text-decoration: underline !important;
+}
+
+.link-cursivo:hover {
+    color: #35583b !important;
+}
+
+#nav-guest,
+#nav-user {
+    display: flex;
+    align-items: center;
+}
+
+#user-greeting {
+    text-decoration: none !important;
+    font-weight: 700;
+}

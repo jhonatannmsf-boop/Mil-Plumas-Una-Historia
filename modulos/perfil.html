@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario - Mil Plumas, Una Historia</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/perfil.css">
 </head>
 <body>
 
@@ -13,24 +13,31 @@
     <div id="header"></div>
 
     <div class="has-text-centered mb-4">
-        <div class="is-inline-block" style="width:80px; height:80px; background-color:#5b8c60; border-radius:50%; line-height:80px; font-size:36px; color:#fff;">👤</div>
-        <h2 class="hero-titulo is-size-2">Sofía Perez</h2>
+        <div class="perfil-avatar">👤</div>
+        <h2 id="perfil-nombre" class="hero-titulo is-size-2">Sofía Perez</h2>
         <p class="link-cursivo is-size-4">Amante de la Fantasía y el Misterio</p>
     </div>
+
     <div class="is-flex is-justify-content-center mb-4">
-        <span class=" btn-principal">Guardados</span>
+        <span class="button btn-principal">Guardados</span>
     </div>
-    <div class="caja-verde-formulario" style="background-color:#b9d7b3;">
+
+    <div class="caja-verde-formulario">
         <div class="is-flex is-justify-content-space-between is-align-items-center">
             <h3 class="link-cursivo is-size-3">Secretos de Blackwood</h3>
         </div>
         <a href="detalle.html" class="button btn-principal mt-3">Ver Historia</a>
-        
     </div>
 
     <div id="footer"></div>
 </div>
 
 <script src="../js/include.js"></script>
+<script>
+    const usuarioGuardado = localStorage.getItem('usuarioNombre') || localStorage.getItem('usuario_activo');
+    if (usuarioGuardado) {
+        document.getElementById('perfil-nombre').textContent = usuarioGuardado;
+    }
+</script>
 </body>
 </html>
