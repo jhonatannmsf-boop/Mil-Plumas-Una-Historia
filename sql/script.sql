@@ -17,7 +17,7 @@ CREATE TABLE historia (
     id_historia INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
     id_usuario_creador INT NOT NULL,
-    tiempo_horas_turno INT NOT NULL DEFAULT 3,       
+    tiempo_horas_turno INT NOT NULL DEFAULT 30,       
     limite_palabras INT NOT NULL DEFAULT 300,          
     estado ENUM('activa', 'completada', 'pausada') NOT NULL DEFAULT 'activa',
     ia_resumen TEXT NULL,                              

@@ -22,22 +22,21 @@
                         <input id="crear_titulo" class="input input-estilo" type="text" name="crear_titulo" placeholder="Título de la historia" required>
                     </div>
 
-                    <div class="field has-text-left mb-3">
+                    <div class="field has-text-left">
                         <label class="label label-cursivo" for="crear_genero">Género</label>
-                        <div class="control">
-                            <input id="crear_genero" class="input input-estilo" type="text" name="crear_genero" value="Fantasía" placeholder="Fantasía, Misterio, Terror..." required>
-                        </div>
-                    </div>
-
-                    <div class="field has-text-left mb-3">
-                        <label class="label label-cursivo">Configuración de Reglas (Horas / Máx Palabras)</label>
-                        <div class="columns">
-                            <div class="column is-6">
-                                <input id="crear_tiempo" class="input input-estilo" type="number" name="crear_tiempo" value="24" title="Horas por turno">
-                            </div>
-                            <div class="column is-6">
-                                <input id="crear_limite" class="input input-estilo" type="number" name="crear_limite" value="300" title="Límite de palabras">
-                            </div>
+                        <div class="select-estilo">
+                            <select id="crear_genero" name="crear_genero" required>
+                                <option value="" disabled selected>Selecciona un género</option>
+                                <option value="aventura">Aventura</option>
+                                <option value="ciencia_ficcion">Ciencia Ficción</option>
+                                <option value="fantasia">Fantasía</option>
+                                <option value="romance">Romance</option>
+                                <option value="terror">Terror</option>
+                                <option value="misterio">Misterio</option>
+                                <option value="historia">Historia</option>
+                                <option value="drama">Drama</option>
+                                <option value="comedia">Comedia</option>
+                            </select>
                         </div>
                     </div>
 
@@ -51,8 +50,7 @@
             </div>
         </div>
     </div>
-
-    <div id="footer"></div>
+    <div id="footer"></div>  
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
