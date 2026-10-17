@@ -1,8 +1,9 @@
 function validarCrearHistoria() {
     let titulo = document.getElementById("crear_titulo").value.trim();
     let primerCap = document.getElementById("crear_primer_capitulo").value.trim();
+    let genero = document.getElementById("crear_genero").value.trim();
 
-    if (!titulo || !primerCap) {
+    if (!titulo || !primerCap || !genero) {
         Swal.fire({
             position: "center",
             icon: "error",
@@ -40,6 +41,21 @@ function validarCrearHistoria() {
     }
 
     return true;
+
+    let generoValido = ["aventura", "romance", "fantasía", "ciencia ficción", "terror"];
+    if (!generoValido.includes(genero.toLowerCase())) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Género Inválido",
+            text: "Selecciona un género válido de la lista",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
+
+    return true;        
 }
 
 function procesarCrearHistoria(event) {
@@ -56,14 +72,4 @@ function procesarCrearHistoria(event) {
     });
 
     return false;
-}
-
-const formCrear = document.getElementById("form-crear");
-if (formCrear) {
-    formCrear.addEventListener("submit", procesarCrearHistoria);
-}
-
-const btnCrearHistoria = document.getElementById("crear_historia");
-if (btnCrearHistoria) {
-    btnCrearHistoria.addEventListener("click", procesarCrearHistoria);
 }
