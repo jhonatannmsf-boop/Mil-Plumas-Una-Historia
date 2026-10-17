@@ -115,3 +115,37 @@ li, td, th, strong, em, small, blockquote,
         font-size: 32px !important;
     }
 }
+
+.select-estilo {
+    width: 100%;
+}
+
+.select-estilo select {
+    width: 100%;
+    height: 80px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 40px;
+    background: #eef5ee;
+    color: #5f7962;
+    font-size: 1.5rem;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #5f7962 50%),
+        linear-gradient(135deg, #5f7962 50%, transparent 50%);
+    background-position:
+        calc(100% - 28px) calc(50% - 4px),
+        calc(100% - 20px) calc(50% - 4px);
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+}
+
+.select-estilo select:focus {
+    box-shadow: 0 0 0 4px rgba(98, 161, 108, .25);
+}
