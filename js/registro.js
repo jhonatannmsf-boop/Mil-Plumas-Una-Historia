@@ -79,13 +79,3 @@ function procesarRegistro(event) {
 
     return false;
 }
-
-const formRegistro = document.getElementById("form-registro");
-if (formRegistro) {
-    formRegistro.addEventListener("submit", procesarRegistro);
-}
-
-const btnRegistrarse = document.getElementById("registrarse");
-if (btnRegistrarse) {
-    btnRegistrarse.addEventListener("click", procesarRegistro);
-}
