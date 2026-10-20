@@ -4,7 +4,9 @@ fetch("header.html")
     const headerEl = document.getElementById("header");
     if (headerEl) {
       headerEl.innerHTML = data;
-      gestionarSesionNav();
+      if (typeof gestionarSesionNav === "function") {
+        gestionarSesionNav();
+      }
     }
   })
   .catch(err => console.warn("No se pudo cargar header.html:", err));
