@@ -61,12 +61,4 @@ function actualizarContador() {
     }
 }
 
-const formEditor = document.getElementById("form-editor");
-if (formEditor) {
-    formEditor.addEventListener("submit", validarEditor);
-}
 
-const btnPublicarTurno = document.getElementById("publicar_turno");
-if (btnPublicarTurno) {
-    btnPublicarTurno.addEventListener("click", validarEditor);
-}

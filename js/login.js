@@ -32,13 +32,3 @@ function validarLogin(event) {
 
     return false;
 }
-
-const formLogin = document.getElementById("form-login");
-if (formLogin) {
-    formLogin.addEventListener("submit", validarLogin);
-}
-
-const btnIniciarSesion = document.getElementById("iniciar_sesion");
-if (btnIniciarSesion) {
-    btnIniciarSesion.addEventListener("click", validarLogin);
-}

@@ -1,34 +1,32 @@
 <?php
 require('conexion.php');
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['nombre_usuario'];
-    $contrasena = $_POST['contrasena'];
-    $correo = $_POST['correo'];
-}
+    $titulo = $_POST['crear_titulo'];
+    $primer_capitulo = $_POST['crear_primer_capitulo'];
 
-$sql = "INSERT INTO usuario (nombre_usuario, contrasena, correo) VALUES ('$usuario', '$contrasena', '$correo')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Usuario registrado exitosamente.";
+    
+    $id_usuario = 1;
+    if (isset($_SESSION['id_usuario'])) {
+        $id_usuario = $_SESSION['id_usuario'];
     } else {
-        echo "Error al registrar el usuario: " . $conn->error;
+        $res_usuario = $conn->query("SELECT id_usuario FROM usuario LIMIT 1");
+        if ($res_usuario && $fila = $res_usuario->fetch_assoc()) {
+            $id_usuario = $fila['id_usuario'];
+        }
     }
 
+    $sql = "INSERT INTO historia (titulo, id_usuario_creador) VALUES ('$titulo', '$id_usuario')";
 
+    if ($conn->query($sql) === TRUE) {
+        $id_historia = $conn->insert_id;
+        $sql_capitulo = "INSERT INTO capitulo (id_historia, id_usuario, numero_turno, contenido) VALUES ('$id_historia', '$id_usuario', 1, '$primer_capitulo')";
+        $conn->query($sql_capitulo);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        echo "Historia creada exitosamente. <a href='../modulos/explorar.html'>Ver historias</a>";
+    } else {
+        echo "Error al crear la historia: " . $conn->error;
+    }
+}
 ?>
