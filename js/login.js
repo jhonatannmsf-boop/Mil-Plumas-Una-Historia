@@ -1,9 +1,9 @@
 function validarLogin(event) {
-    if (event) event.preventDefault();
     let usuario = document.getElementById("login-usuario").value.trim();
     let pass = document.getElementById("login-pass").value;
 
     if (usuario === "" || pass === "") {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -15,9 +15,7 @@ function validarLogin(event) {
         return false;
     }
 
-    
-
-    
-
-    return false;
+    return true;
 }
+
+document.getElementById("iniciar_sesion").onclick = validarLogin;

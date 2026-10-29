@@ -1,5 +1,4 @@
 function validarEditor(event) {
-    if (event) event.preventDefault();
     let textarea = document.getElementById("texto_capitulo");
     if (!textarea) return false;
 
@@ -8,6 +7,7 @@ function validarEditor(event) {
     let limite = textarea.dataset.limite ? parseInt(textarea.dataset.limite) : 300;
 
     if (palabras < 10) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "warning",
@@ -19,6 +19,7 @@ function validarEditor(event) {
     }
 
     if (palabras > limite) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -28,26 +29,22 @@ function validarEditor(event) {
         });
         return false;
     }
-    return false;
+
+    return true;
 }
 
-function actualizarContador() {
-    let textarea = document.getElementById("texto_capitulo");
-    if (!textarea) return;
+document.getElementById("publicar_turno").onclick = validarEditor;
 
-    let contenido = textarea.value.trim();
-    let palabras = contenido ? contenido.split(/\s+/).filter(Boolean).length : 0;
-    let limite = textarea.dataset.limite ? parseInt(textarea.dataset.limite) : 300;
-
-    let contador = document.getElementById("contador-palabras");
-    if (contador) {
-        contador.textContent = `${palabras} / ${limite} palabras`;
-        if (palabras > limite) {
-            contador.style.color = "red";
-        } else {
-            contador.style.color = "";
+const textareaCapitulo = document.getElementById("texto_capitulo");
+if (textareaCapitulo) {
+    textareaCapitulo.oninput = () => {
+        let contenido = textareaCapitulo.value.trim();
+        let palabras = contenido ? contenido.split(/\s+/).filter(Boolean).length : 0;
+        let limite = textareaCapitulo.dataset.limite ? parseInt(textareaCapitulo.dataset.limite) : 300;
+        let contador = document.getElementById("contador-palabras");
+        if (contador) {
+            contador.textContent = `${palabras} / ${limite} palabras`;
+            contador.style.color = palabras > limite ? "red" : "";
         }
-    }
+    };
 }
-
-

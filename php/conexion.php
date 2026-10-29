@@ -1,4 +1,6 @@
 <?php
+    require_once("alert.php");
+
     $servername = "localhost";
     $username = "root";
     $password = "";
