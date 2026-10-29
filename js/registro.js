@@ -66,16 +66,7 @@ function procesarRegistro(event) {
     localStorage.setItem("usuarioNombre", usuario);
     localStorage.setItem("usuario_activo", usuario);
 
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "¡Cuenta creada con éxito!",
-        text: `Bienvenido a Mil Plumas, @${usuario}.`,
-        showConfirmButton: false,
-        timer: 1200
-    }).then(() => {
-        window.location.href = "perfil.html";
-    });
+    
 
     return false;
 }

@@ -35,7 +35,7 @@ CREATE TABLE capitulo (
     id_usuario INT NULL,
     numero_turno INT NOT NULL DEFAULT 1,                        
     contenido TEXT NOT NULL,                          
-    cantidad_palabras INT NOT NULL DEFAULT 0,
+    cantidad_palabras INT NOT NULL DEFAULT 300,
     fecha_publicacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_capitulo_historia FOREIGN KEY (id_historia) 
         REFERENCES historia(id_historia) ON DELETE CASCADE,

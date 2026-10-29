@@ -15,9 +15,7 @@ function validarLogin(event) {
         return false;
     }
 
-    localStorage.setItem('sesionIniciada', 'true');
-    localStorage.setItem('usuarioNombre', usuario);
-    localStorage.setItem('usuario_activo', usuario);
+    
 
     Swal.fire({
         position: "center",

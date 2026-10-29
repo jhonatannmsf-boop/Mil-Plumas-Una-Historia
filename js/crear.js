@@ -2,8 +2,10 @@ function validarCrearHistoria() {
     let titulo = document.getElementById("crear_titulo").value.trim();
     let primerCap = document.getElementById("crear_primer_capitulo").value.trim();
     let genero = document.getElementById("crear_genero").value.trim();
+    let tiempo = document.getElementById("crear_tiempo").value.trim();
+    let limite = document.getElementById("crear_limite").value.trim();
 
-    if (!titulo || !primerCap || !genero) {
+    if (!titulo || !primerCap || !genero || !tiempo || !limite) {
         Swal.fire({
             position: "center",
             icon: "error",
@@ -40,36 +42,40 @@ function validarCrearHistoria() {
         return false;
     }
 
-    return true;
-
-    let generoValido = ["aventura", "romance", "fantasía", "ciencia ficción", "terror"];
-    if (!generoValido.includes(genero.toLowerCase())) {
+    if (parseInt(tiempo) <= 0) {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Género Inválido",
-            text: "Selecciona un género válido de la lista",
+            title: "Tiempo Inválido",
+            text: "El tiempo por turno debe ser un número positivo",
             showConfirmButton: false,
             timer: 1500
         });
         return false;
     }
 
-    return true;        
-}
-
-function procesarCrearHistoria(event) {
-    if (event) event.preventDefault();
-    if (!validarCrearHistoria()) return false;
+    if (parseInt(limite) <= 0 || parseInt(limite) > 300) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Límite de Palabras Inválido",
+            text: "El límite de palabras debe ser un número positivo y no mayor a 300",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
 
     Swal.fire({
+        position: "center",
         icon: "success",
         title: "¡Historia Creada!",
-        text: "Tu nueva historia ha sido creada con éxito.",
-        confirmButtonColor: '#5b8c60'
-    }).then(() => {
-        window.location.href = "explorar.html";
+        text: `La historia "${titulo}" ha sido creada exitosamente.`,
+        showConfirmButton: false,
+        timer: 1500
     });
 
-    return false;
+    return true;
+    
 }
+
