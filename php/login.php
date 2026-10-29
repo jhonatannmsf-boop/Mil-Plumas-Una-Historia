@@ -14,8 +14,8 @@ if ($resultado && $resultado->num_rows > 0) {
     $_SESSION['id_usuario'] = $fila['id_usuario'];
     $_SESSION['nombre_usuario'] = $fila['nombre_usuario'];
 
-    echo "Inicio de sesión exitoso. Bienvenido, " . $usuario . ". <a href='../modulos/explorar.html'>Ir a explorar</a>";
+    Alerta("success", "¡Inicio de sesión exitoso!", "../modulos/explorar.html");
 } else {
-    echo "Usuario o contraseña incorrectos. <a href='../modulos/login.html'>Intentar de nuevo</a>";
+    Alerta("error", "Usuario o contraseña incorrectos.", "../modulos/login.html");
 }
 ?>

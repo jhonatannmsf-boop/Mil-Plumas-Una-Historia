@@ -28,17 +28,6 @@ function validarEditor(event) {
         });
         return false;
     }
-
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "¡Turno Publicado!",
-        text: "Tu contribución ha sido enviada y se pasó la pluma.",
-        confirmButtonColor: '#5b8c60'
-    }).then(() => {
-        window.location.href = "detalle.html";
-    });
-
     return false;
 }
 

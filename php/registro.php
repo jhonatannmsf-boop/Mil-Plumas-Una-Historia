@@ -16,6 +16,6 @@ VALUES ('$usuario', '$correo', '$contrasena')";
 if ($conn->query($sql) === TRUE) {
     alerta("success", "¡Cuenta creada con éxito!", "../index.html");
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    Alerta("error", "Error al crear la cuenta: " . $conn->error, "../modulos/registro.html");
 }
 ?>

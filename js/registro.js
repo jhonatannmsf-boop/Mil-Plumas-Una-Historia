@@ -70,3 +70,5 @@ function procesarRegistro(event) {
 
     return false;
 }
+
+Document.getElementById("registrarse").onclick = procesarRegistro;

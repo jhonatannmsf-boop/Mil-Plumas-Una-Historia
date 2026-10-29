@@ -65,17 +65,7 @@ function validarCrearHistoria() {
         });
         return false;
     }
-
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "¡Historia Creada!",
-        text: `La historia "${titulo}" ha sido creada exitosamente.`,
-        showConfirmButton: false,
-        timer: 1500
-    });
-
     return true;
-    
+   
 }
 

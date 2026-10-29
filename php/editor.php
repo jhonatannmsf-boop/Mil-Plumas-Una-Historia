@@ -10,8 +10,8 @@ $sql = "INSERT INTO capitulo(
 VALUES ('$contenido')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Registro guardado correctamente.";
+    Alerta("success", "¡Capítulo creado con éxito!", "../modulos/explorar.html");
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    Alerta("error", "Error al crear el capítulo: " . $conn->error, "../modulos/editor.html");
 }
 ?>

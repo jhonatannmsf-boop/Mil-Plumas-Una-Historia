@@ -24,8 +24,8 @@ VALUES (
 )";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Registro guardado correctamente.";
+    Alerta("success", "¡Historia creada con éxito!", "../modulos/explorar.html");
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    Alerta("error", "Error al crear la historia: " . $conn->error, "../modulos/crear.html");
 }
 ?>

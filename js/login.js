@@ -17,16 +17,7 @@ function validarLogin(event) {
 
     
 
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "¡Bienvenido!",
-        text: `Has iniciado sesión correctamente como ${usuario}.`,
-        showConfirmButton: false,
-        timer: 1500
-    }).then(() => {
-        window.location.href = "explorar.html";
-    });
+    
 
     return false;
 }
