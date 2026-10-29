@@ -1,4 +1,4 @@
-function validarCrearHistoria() {
+function validarCrearHistoria(event) {
     let titulo = document.getElementById("crear_titulo").value.trim();
     let primerCap = document.getElementById("crear_primer_capitulo").value.trim();
     let genero = document.getElementById("crear_genero").value.trim();
@@ -6,6 +6,7 @@ function validarCrearHistoria() {
     let limite = document.getElementById("crear_limite").value.trim();
 
     if (!titulo || !primerCap || !genero || !tiempo || !limite) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -18,6 +19,7 @@ function validarCrearHistoria() {
     }
 
     if (titulo.length < 4) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -31,6 +33,7 @@ function validarCrearHistoria() {
 
     let palabras = primerCap.split(/\s+/).filter(Boolean).length;
     if (palabras < 10) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -43,6 +46,7 @@ function validarCrearHistoria() {
     }
 
     if (parseInt(tiempo) <= 0) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -55,6 +59,7 @@ function validarCrearHistoria() {
     }
 
     if (parseInt(limite) <= 0 || parseInt(limite) > 300) {
+        if (event) event.preventDefault();
         Swal.fire({
             position: "center",
             icon: "error",
@@ -65,7 +70,8 @@ function validarCrearHistoria() {
         });
         return false;
     }
+
     return true;
-   
 }
 
+document.getElementById("crear_historia").onclick = validarCrearHistoria;
