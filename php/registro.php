@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+require("conexion.php");
 
 $usuario = $_POST['nombre_usuario'];
 $correo = $_POST['correo'];
@@ -14,7 +14,7 @@ $sql = "INSERT INTO usuario(
 VALUES ('$usuario', '$correo', '$contrasena')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Registro guardado correctamente.";
+    alerta("success", "¡Cuenta creada con éxito!", "../index.html");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

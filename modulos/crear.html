@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,54 +8,77 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <link rel="stylesheet" href="../css/crear.css">
 </head>
+
 <body>
 
-<div class="libro-marco">
-    <div id="header"></div>
+    <div class="libro-marco">
+        <div id="header"></div>
 
-    <div class="columns is-centered">
-        <div class="column is-8">
-            <div class="caja-verde-formulario has-text-centered">
-                <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo Libro</h2>
-                <form id="form-crear" method="POST" action="../php/crear.php">
-                    <div class="field has-text-left mb-3">
-                        <label class="label label-cursivo" for="crear_titulo">Título de la historia</label>
-                        <input id="crear_titulo" class="input input-estilo" type="text" name="crear_titulo" placeholder="Título de la historia" required>
-                    </div>
-
-                    <div class="field has-text-left">
-                        <label class="label label-cursivo" for="crear_genero">Género</label>
-                        <div class="select-estilo">
-                            <select id="crear_genero" name="crear_genero" required>
-                                <option value="" disabled selected>Selecciona un género</option>
-                                <option value="aventura">Aventura</option>
-                                <option value="ciencia_ficcion">Ciencia Ficción</option>
-                                <option value="fantasia">Fantasía</option>
-                                <option value="romance">Romance</option>
-                                <option value="terror">Terror</option>
-                                <option value="misterio">Misterio</option>
-                                <option value="historia">Historia</option>
-                                <option value="drama">Drama</option>
-                                <option value="comedia">Comedia</option>
-                            </select>
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="caja-verde-formulario has-text-centered">
+                    <h2 class="hero-titulo is-size-2 mb-3">Crear Nueva Historia / Nuevo Libro</h2>
+                    <form id="form-crear" method="POST" action="../php/crear.php">
+                        <div class="field has-text-left mb-3">
+                            <label class="label label-cursivo" for="crear_titulo">Título de la historia</label>
+                            <input id="crear_titulo" class="input input-estilo" type="text" name="crear_titulo"
+                                placeholder="Título de la historia" required>
                         </div>
-                    </div>
 
-                    <div class="field has-text-left mb-4">
-                        <label class="label label-cursivo" for="crear_primer_capitulo">Primer capítulo / inicio de la historia</label>
-                        <textarea id="crear_primer_capitulo" class="textarea textarea-estilo" name="crear_primer_capitulo" rows="3" placeholder="Escribe al menos 10 palabras para iniciar el primer turno..." required></textarea>
-                    </div>
+                        <div class="field has-text-left mb-3">
+                            <label class="label label-cursivo" for="crear_tiempo">Tiempo por turno (minutos)</label>
+                            <input id="crear_tiempo" class="input input-estilo" type="number" name="crear_tiempo"
+                                placeholder="Tiempo por turno" required>
+                        </div>
 
-                    <button type="submit" class="btn btn-primario" name="crear_historia" id="crear_historia">Crear Historia</button>
-                </form>
+                        <div class="field has-text-left mb-3">
+                            <label class="label label-cursivo" for="crear_limite">Limite de palabras (máximo
+                                300)</label>
+                            <input id="crear_limite" class="input input-estilo" type="number" name="crear_limite"
+                                placeholder="Limite de palabras" required>
+                        </div>
+
+                        <div class="field has-text-left">
+                            <label class="label label-cursivo" for="crear_genero">Género</label>
+                            <div class="select-estilo">
+                                <select id="crear_genero" name="crear_genero" required>
+                                    <option value="" disabled selected>Selecciona un género</option>
+                                    <option value="aventura">Aventura</option>
+                                    <option value="ciencia_ficcion">Ciencia Ficción</option>
+                                    <option value="fantasia">Fantasía</option>
+                                    <option value="romance">Romance</option>
+                                    <option value="terror">Terror</option>
+                                    <option value="misterio">Misterio</option>
+                                    <option value="historia">Historia</option>
+                                    <option value="drama">Drama</option>
+                                    <option value="comedia">Comedia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field has-text-left mb-4">
+                            <label class="label label-cursivo" for="crear_primer_capitulo">Primer capítulo / inicio de
+                                la historia</label>
+                            <textarea id="crear_primer_capitulo" class="textarea textarea-estilo"
+                                name="crear_primer_capitulo" rows="3"
+                                placeholder="Escribe al menos 10 palabras para iniciar el primer turno..."
+                                required></textarea>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primario" name="crear_historia" id="crear_historia">Crear
+                            Historia</button>
+                    </form>
+                </div>
             </div>
         </div>
+        <div id="footer"></div>
     </div>
-    <div id="footer"></div>  
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../js/crear.js"></script>
-<script src="../js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/crear.js"></script>
+    <script src="../js/include.js"></script>
 </body>
+
 </html>

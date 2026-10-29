@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("conexion.php");
+require("conexion.php");
 
 $usuario = $_POST['nombre_usuario'];
 $contrasena = $_POST['contrasena'];
