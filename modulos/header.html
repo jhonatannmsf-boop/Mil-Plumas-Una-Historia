@@ -7,7 +7,6 @@
   <div class="level-item" style="gap: 24px;">
     <a href="explorar.html" class="link-cursivo">Explorar</a>
     <a href="crear.html" class="link-cursivo">Crear</a>
-    <a href="perfil.html" class="link-cursivo">Perfil</a>
     <a onclick="history.back()" class="link-cursivo" style="cursor:pointer;">Anterior</a>
   </div>
 
@@ -16,8 +15,13 @@
     <a href="registro.html" class="link-cursivo">Registrarse</a>
   </div>
 
-  <div id="nav-user" class="level-right" style="gap: 20px; display: none !important;">
-    <span id="user-greeting" class="link-cursivo"></span>
-    <a href="../index.html" id="btn-logout" class="link-cursivo">Cerrar Sesión</a>
-  </div>
+  <div id="nav-user" class="level-right" style="gap: 20px; display: none;">
+    <span id="nombre-usuario" class="link-cursivo"></span>
+    <a href="perfil.html" id="nav-perfil" class="link-cursivo" style="display: none;">
+    Perfil
+</a>
+    <a href="../php/cerrarSesion.php" id="cerrar-sesion" class="link-cursivo">
+    Cerrar sesión
+</a>
+</div>
 </nav>

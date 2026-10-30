@@ -119,3 +119,8 @@ li, td, th, strong, em, small, blockquote,
         min-height: auto;
     }
 }
+
+.boton-like.activo {
+    background-color: #f8d7da;
+    color: #c0392b;
+}

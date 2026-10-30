@@ -68,13 +68,3 @@ CREATE TABLE me_gusta (
         REFERENCES historia(id_historia) ON DELETE CASCADE
 );
 
-CREATE TABLE guardado (
-    id_usuario INT NOT NULL,
-    id_historia INT NOT NULL,
-    fecha_guardado DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id_usuario, id_historia),
-    CONSTRAINT fk_guardado_usuario FOREIGN KEY (id_usuario) 
-        REFERENCES usuario(id_usuario) ON DELETE CASCADE,
-    CONSTRAINT fk_guardado_historia FOREIGN KEY (id_historia) 
-        REFERENCES historia(id_historia) ON DELETE CASCADE
-);

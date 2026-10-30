@@ -14,7 +14,30 @@ function validarLogin(event) {
         });
         return false;
     }
-
+    if (usuario.length < 3) {
+        if (event) event.preventDefault();
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Datos Inválidos",
+            text: "El usuario debe tener al menos 3 caracteres",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
+    if (pass.length < 8) {
+        if (event) event.preventDefault();
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Datos Inválidos",
+            text: "La contraseña debe tener al menos 8 caracteres",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
     return true;
 }
 
