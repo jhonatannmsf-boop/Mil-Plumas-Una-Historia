@@ -1,5 +1,6 @@
 <?php
 require("conexion.php");
+require_once("alert.php");
 
 $usuario = $_POST['nombre_usuario'];
 $correo = $_POST['correo'];
@@ -16,6 +17,6 @@ VALUES ('$usuario', '$correo', '$contrasena')";
 if ($conn->query($sql) === TRUE) {
     alerta("success", "¡Cuenta creada con éxito!", "../index.html");
 } else {
-    Alerta("error", "Error al crear la cuenta: " . $conn->error, "../modulos/registro.html");
+    alerta("error", "Error al crear la cuenta: " . $conn->error, "../modulos/registro.html");
 }
 ?>

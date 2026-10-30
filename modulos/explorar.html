@@ -12,15 +12,14 @@
 <div class="libro-marco">
     <div id="header"></div>
 
-    <input class="input input-estilo mb-4" type="text" placeholder="Buscar Libros o géneros...">
+   <input
+    id="buscador-libros"
+    class="input input-estilo mb-4"
+    type="text"
+    placeholder="Buscar historias por título..."
+>
     
-    <div class="is-flex is-justify-content-space-between mb-5 px-5">
-        <span class="link-cursivo" style="cursor: pointer;">Todos</span>
-        <span class="link-cursivo" style="cursor: pointer;">Fantasía</span>
-        <span class="link-cursivo" style="cursor: pointer;">Misterio</span>
-        <span class="link-cursivo" style="cursor: pointer;">Terror</span>
-    </div>
-
+    
     <div class="columns is-multiline">
         <div class="column is-4">
             <div class="tarjeta-libro">
@@ -29,7 +28,7 @@
                     <a href="detalle.html" class="link-cursivo is-size-4">Secretos de Blackwood</a>
                 </div>
                 <div class="is-size-5">Misterio • Terror</div>
-                <button class="boton-like">
+                <button type="button" class="boton-like" data-libro-id="1">
                     ❤️ Me gusta <span class="contador">0</span>
                 </button>
             </div>
@@ -41,7 +40,7 @@
                     <a href="detalle.html" class="link-cursivo is-size-4">Las Sombras del Reloj</a>
                 </div>
                 <div class="is-size-5">Misterio</div>
-                <button class="boton-like">
+                <button type="button" class="boton-like" data-libro-id="2">
                     ❤️ Me gusta <span class="contador">0</span>
                 </button>
             </div>
@@ -53,7 +52,7 @@
                     <a href="detalle.html" class="link-cursivo is-size-4">El Pacto de los Inmortales</a>
                 </div>
                 <div class="is-size-5">Terror • Fantasía</div>
-                <button class="boton-like">
+                <button type="button" class="boton-like" data-libro-id="3">
                     ❤️ Me gusta <span class="contador">0</span>
                 </button>
             </div>
@@ -63,6 +62,7 @@
     <div id="footer"></div>
 </div>
 <script src="../js/explorar.js"></script>
+<script src="../js/sesion.js"></script>
 <script src="../js/include.js"></script>
 </body>
 </html>

@@ -1,5 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: ../modulos/login.html");
+    exit();
+}
+
+
 require("conexion.php");
+require_once("alert.php");
 
 $titulo = $_POST['crear_titulo'];
 $genero = $_POST['crear_genero'];
@@ -24,8 +32,8 @@ VALUES (
 )";
 
 if ($conn->query($sql) === TRUE) {
-    Alerta("success", "¡Historia creada con éxito!", "../modulos/explorar.html");
+    alerta("success", "¡Historia creada con éxito!", "../modulos/explorar.html");
 } else {
-    Alerta("error", "Error al crear la historia: " . $conn->error, "../modulos/crear.html");
+    alerta("error", "Error al crear la historia: " . $conn->error, "../modulos/crear.html");
 }
 ?>
