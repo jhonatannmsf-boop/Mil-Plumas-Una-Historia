@@ -1,3 +1,51 @@
+function cargarHistorias() {
+
+    fetch("../php/historias.php")
+        .then(respuesta => respuesta.json())
+        .then(historias => {
+
+            let lista = document.getElementById("lista-historias");
+
+            historias.forEach(historia => {
+
+                let columna = document.createElement("div");
+                columna.className = "column is-4";
+
+                columna.innerHTML = `
+                    <div class="tarjeta-libro">
+                        <div class="portada-simulada" onclick="window.location.href='detalle.html?id=${historia.id_historia}'"></div>
+                        <div>
+                            <a href="detalle.html?id=${historia.id_historia}" class="link-cursivo is-size-4"></a>
+                        </div>
+                        <div class="is-size-5"></div>
+                        <button type="button" class="boton-like" data-libro-id="${historia.id_historia}">
+                            ❤️ Me gusta <span class="contador">0</span>
+                        </button>
+                    </div>
+                `;
+
+                columna.querySelector("a").textContent = historia.titulo;
+                columna.querySelector(".is-size-5").textContent = historia.genero;
+
+                if (historia.portada) {
+                    columna.querySelector(".portada-simulada").style.backgroundImage =
+                        "url(" + JSON.stringify(historia.portada) + ")";
+                }
+
+                lista.appendChild(columna);
+
+            });
+
+            activarLikes();
+
+        })
+        .catch(error => console.log("Error al cargar historias:", error));
+
+}
+
+
+function activarLikes() {
+
 let botones = document.querySelectorAll(".boton-like");
 
 
@@ -68,6 +116,10 @@ botones.forEach(boton => {
     });
 
 });
+
+}
+
+cargarHistorias();
 
 let buscador = document.getElementById("buscador-libros");
 

@@ -16,19 +16,31 @@ $tiempo = $_POST['crear_tiempo'];
 $limite = $_POST['crear_limite'];
 
 
+$portada = trim($_POST['crear_portada']);
+
+if (!filter_var($portada, FILTER_VALIDATE_URL) || !preg_match('/^https?:\/\//i', $portada)) {
+    alerta("error", "La URL de la portada no es válida.", "../modulos/crear.html");
+    exit();
+}
+
+$portada = $conn->real_escape_string($portada);
+
+
 $sql = "INSERT INTO historia (
     titulo,
     genero,
     primer_capitulo,
     tiempo_horas_turno,
-    limite_palabras
+    limite_palabras,
+    portada
 )
 VALUES (
     '$titulo',
     '$genero',
     '$primer_capitulo',
     '$tiempo',
-    '$limite'
+    '$limite',
+    '$portada'
 )";
 
 if ($conn->query($sql) === TRUE) {

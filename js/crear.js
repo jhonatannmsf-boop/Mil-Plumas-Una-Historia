@@ -71,6 +71,20 @@ function validarCrearHistoria(event) {
         return false;
     }
 
+    let portada = document.getElementById("crear_portada").value.trim();
+    if (!/^https?:\/\/\S+$/i.test(portada)) {
+        if (event) event.preventDefault();
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "URL de Portada Inválida",
+            text: "Escribe una URL que empiece por http:// o https://",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
+
     return true;
 }
 

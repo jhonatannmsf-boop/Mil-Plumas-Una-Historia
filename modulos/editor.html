@@ -13,12 +13,13 @@
     <div id="header"></div>
 
     <div class="barra-editor is-flex is-justify-content-space-between is-align-items-center mb-4">
-        <span class="is-size-5 font-weight-bold">📖 Secretos de Blackwood</span>
+        <span id="editor-titulo" class="is-size-5 font-weight-bold"></span>
         <span class="badge-tu-turno"> Tu Turno </span>
         <span id="contador-palabras">0 / 300 palabras</span>
     </div>
 
     <form id="form-editor" method="POST" action="../php/editor.php">
+        <input type="hidden" id="id_historia" name="id_historia">
         <div class="columns">
             <div class="column is-6">
                 <div class="caja-editor">
