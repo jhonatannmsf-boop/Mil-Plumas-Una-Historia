@@ -82,8 +82,11 @@ li, td, th, strong, em, small, blockquote,
     width: 100%;
     height: 120px;
     background-color: #2b3a2b;
+    background-size: cover;
+    background-position: center;
     border-radius: 20px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .boton-like {

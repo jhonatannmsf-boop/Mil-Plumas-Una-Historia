@@ -35,6 +35,32 @@ function validarEditor(event) {
 
 document.getElementById("publicar_turno").onclick = validarEditor;
 
+function cargarHistoriaEditor() {
+
+    let idHistoria = new URLSearchParams(window.location.search).get("id");
+
+    document.getElementById("id_historia").value = idHistoria;
+
+    fetch("../php/detalle.php?id=" + idHistoria)
+        .then(respuesta => respuesta.json())
+        .then(historia => {
+
+            if (historia.error) {
+                document.getElementById("editor-titulo").textContent = historia.error;
+                return;
+            }
+
+            document.getElementById("editor-titulo").textContent = "📖 " + historia.titulo;
+            document.getElementById("texto_capitulo").dataset.limite = historia.limite_palabras;
+            document.getElementById("contador-palabras").textContent = "0 / " + historia.limite_palabras + " palabras";
+
+        })
+        .catch(error => console.log("Error al cargar la historia:", error));
+
+}
+
+cargarHistoriaEditor();
+
 const textareaCapitulo = document.getElementById("texto_capitulo");
 if (textareaCapitulo) {
     textareaCapitulo.oninput = () => {

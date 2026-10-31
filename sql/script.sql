@@ -23,7 +23,8 @@ CREATE TABLE historia (
     tiempo_horas_turno INT NOT NULL DEFAULT 30,       
     limite_palabras INT NOT NULL DEFAULT 300,          
     estado ENUM('activa', 'completada', 'pausada') NOT NULL DEFAULT 'activa',
-    ia_resumen TEXT NULL,                              
+    ia_resumen TEXT NULL,
+    portada VARCHAR(500) NULL,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_historia_creador FOREIGN KEY (id_usuario_creador) 
         REFERENCES usuario(id_usuario) ON DELETE CASCADE
