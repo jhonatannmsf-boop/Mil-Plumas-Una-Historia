@@ -35,6 +35,37 @@ function validarEditor(event) {
 
 document.getElementById("publicar_turno").onclick = validarEditor;
 
+function cargarHistoriaEditor() {
+
+    let idHistoria = new URLSearchParams(window.location.search).get("id");
+
+    if (!idHistoria || idHistoria === "0") {
+        window.location.replace("explorar.html");
+        return;
+    }
+
+    document.getElementById("id_historia").value = idHistoria;
+
+    fetch("../php/detalle.php?id=" + idHistoria)
+        .then(respuesta => respuesta.json())
+        .then(historia => {
+
+            if (historia.error) {
+                document.getElementById("editor-titulo").textContent = historia.error;
+                return;
+            }
+
+            document.getElementById("editor-titulo").textContent = "📖 " + historia.titulo;
+            document.getElementById("texto_capitulo").dataset.limite = historia.limite_palabras;
+            document.getElementById("contador-palabras").textContent = "0 / " + historia.limite_palabras + " palabras";
+
+        })
+        .catch(error => console.log("Error al cargar la historia:", error));
+
+}
+
+cargarHistoriaEditor();
+
 const textareaCapitulo = document.getElementById("texto_capitulo");
 if (textareaCapitulo) {
     textareaCapitulo.oninput = () => {
@@ -48,3 +79,15 @@ if (textareaCapitulo) {
         }
     };
 }
+
+window.addEventListener("pageshow", function() {
+    if (textareaCapitulo) {
+        textareaCapitulo.value = "";
+        let contador = document.getElementById("contador-palabras");
+        let limite = textareaCapitulo.dataset.limite || 300;
+        if (contador) {
+            contador.textContent = "0 / " + limite + " palabras";
+            contador.style.color = "";
+        }
+    }
+});

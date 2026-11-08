@@ -20,7 +20,7 @@ function alerta($icono, $titulo, $url = '') {
                 showConfirmButton: false
             }).then(() => {
                 if ('$url' !== '') {
-                    window.location.href = '$url';
+                    window.location.replace('$url');
                 }
             });
 
