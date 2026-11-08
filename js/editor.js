@@ -39,6 +39,11 @@ function cargarHistoriaEditor() {
 
     let idHistoria = new URLSearchParams(window.location.search).get("id");
 
+    if (!idHistoria || idHistoria === "0") {
+        window.location.replace("explorar.html");
+        return;
+    }
+
     document.getElementById("id_historia").value = idHistoria;
 
     fetch("../php/detalle.php?id=" + idHistoria)
@@ -74,3 +79,15 @@ if (textareaCapitulo) {
         }
     };
 }
+
+window.addEventListener("pageshow", function() {
+    if (textareaCapitulo) {
+        textareaCapitulo.value = "";
+        let contador = document.getElementById("contador-palabras");
+        let limite = textareaCapitulo.dataset.limite || 300;
+        if (contador) {
+            contador.textContent = "0 / " + limite + " palabras";
+            contador.style.color = "";
+        }
+    }
+});

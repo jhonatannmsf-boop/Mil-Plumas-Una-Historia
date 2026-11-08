@@ -8,6 +8,16 @@ if (!isset($_SESSION['id_usuario'])) {
 require("conexion.php");
 require_once("alert.php");
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['id_historia']) || !isset($_POST['texto_capitulo'])) {
+    $id_historia = isset($_GET['id']) ? (int) $_GET['id'] : (isset($_POST['id_historia']) ? (int) $_POST['id_historia'] : 0);
+    if ($id_historia > 0) {
+        header("Location: ../modulos/detalle.html?id=" . $id_historia);
+    } else {
+        header("Location: ../modulos/explorar.html");
+    }
+    exit();
+}
+
 $id_historia = (int) $_POST['id_historia'];
 $id_usuario = $_SESSION['id_usuario'];
 $contenido = $conn->real_escape_string($_POST['texto_capitulo']);

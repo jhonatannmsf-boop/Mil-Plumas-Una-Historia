@@ -9,6 +9,11 @@ if (!isset($_SESSION['id_usuario'])) {
 require("conexion.php");
 require_once("alert.php");
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_POST['crear_titulo'])) {
+    header("Location: ../modulos/crear.html");
+    exit();
+}
+
 $titulo = $_POST['crear_titulo'];
 $genero = $_POST['crear_genero'];
 $primer_capitulo = $_POST['crear_primer_capitulo'];
