@@ -3,7 +3,7 @@ let intervaloCronometro = null;
 function iniciarCronometro(segundos) {
     let tiempoRestante = parseInt(segundos, 10);
     if (isNaN(tiempoRestante) || tiempoRestante <= 0) {
-        tiempoRestante = 1800; // 30 minutos de reserva
+        tiempoRestante = 1800;
     }
 
     let elCronometro = document.getElementById("cronometro-turno");
@@ -24,7 +24,6 @@ function iniciarCronometro(segundos) {
 
         if (tiempoRestante <= 0) {
             clearInterval(intervaloCronometro);
-            // Al acabarse el tiempo, remover required y auto-enviar el formulario
             if (textarea) {
                 textarea.removeAttribute("required");
             }
@@ -108,7 +107,6 @@ function cargarHistoriaEditor() {
         };
     }
 
-    // Tomar o reanudar el turno exclusivo en el backend
     fetch("../php/tomarTurno.php?id=" + idHistoria)
         .then(respuesta => respuesta.json())
         .then(data => {
@@ -130,7 +128,6 @@ function cargarHistoriaEditor() {
             document.getElementById("texto_capitulo").dataset.limite = data.limite_palabras;
             document.getElementById("contador-palabras").textContent = "0 / " + data.limite_palabras + " palabras";
 
-            // Iniciar cronómetro regresivo con los segundos restantes
             iniciarCronometro(data.segundos_restantes);
 
         })

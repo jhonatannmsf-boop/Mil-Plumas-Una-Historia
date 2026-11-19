@@ -20,7 +20,6 @@ $primer_capitulo = $_POST['crear_primer_capitulo'];
 $tiempo = $_POST['crear_tiempo'];
 $limite = $_POST['crear_limite'];
 
-// Guardar el usuario de la sesión como creador de la historia
 $id_usuario = (int) $_SESSION['id_usuario'];
 
 $portada = trim($_POST['crear_portada']);

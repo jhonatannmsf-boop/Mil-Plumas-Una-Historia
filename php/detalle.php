@@ -23,17 +23,14 @@ if ($resultado->num_rows == 0) {
 
 $historia = $resultado->fetch_assoc();
 
-// Verificar si el usuario en sesión es el creador de la historia
 $es_creador = false;
 if (isset($_SESSION['id_usuario']) && $historia['id_usuario_creador'] !== null) {
     $es_creador = ((int) $historia['id_usuario_creador'] === (int) $_SESSION['id_usuario']);
 }
 $historia['es_creador'] = $es_creador;
 
-// Quitar id_usuario_creador para no exponerlo en la respuesta JSON
 unset($historia['id_usuario_creador']);
 
-// Verificar estado del turno actual en participacion
 $tiempo_minutos = (int) $historia['tiempo_horas_turno'];
 if ($tiempo_minutos <= 0) {
     $tiempo_minutos = 30;
@@ -66,7 +63,6 @@ if ($resTurno && $resTurno->num_rows > 0) {
             $turno_info["es_mi_turno"] = true;
         }
     } else {
-        // El tiempo expiró, liberar turno en la base de datos
         $conn->query("UPDATE participacion SET es_turno_actual = 0 WHERE id_historia = '$id_historia'");
     }
 }

@@ -8,7 +8,6 @@ ob_end_clean();
 
 header("Content-Type: application/json");
 
-// Verificar si hay sesión activa
 if (!isset($_SESSION['id_usuario'])) {
     echo json_encode(["error" => "Debes iniciar sesión"]);
     exit();
@@ -31,7 +30,6 @@ if ($resultado->num_rows == 0) {
 $capitulo = $resultado->fetch_assoc();
 $id_sesion = (int) $_SESSION['id_usuario'];
 
-// Validar que solo el creador de la historia pueda eliminar capítulos
 if ($capitulo['id_usuario_creador'] === null || (int) $capitulo['id_usuario_creador'] !== $id_sesion) {
     echo json_encode(["error" => "Solo el creador de la historia puede eliminar capítulos"]);
     exit();
@@ -43,7 +41,6 @@ $numero_borrado = (int) $capitulo['numero_turno'];
 $sqlDelete = "DELETE FROM capitulo WHERE id_capitulo = '$id_capitulo'";
 
 if ($conn->query($sqlDelete) === TRUE) {
-    // Renumerar los turnos posteriores para evitar turnos duplicados
     $sqlRenum = "UPDATE capitulo
                  SET numero_turno = numero_turno - 1
                  WHERE id_historia = '$id_historia'

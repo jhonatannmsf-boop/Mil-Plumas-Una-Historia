@@ -23,7 +23,6 @@ $id_usuario = (int) $_SESSION['id_usuario'];
 $contenido = $conn->real_escape_string($_POST['texto_capitulo']);
 $cantidad_palabras = count(preg_split('/\s+/', trim($_POST['texto_capitulo']), -1, PREG_SPLIT_NO_EMPTY));
 
-// Validar que el usuario en sesión tenga el turno activo en participacion
 $sqlCheck = "SELECT id_usuario FROM participacion 
              WHERE id_historia = '$id_historia' AND es_turno_actual = 1";
 $resCheck = $conn->query($sqlCheck);
@@ -34,10 +33,8 @@ if (!$filaCheck || (int) $filaCheck['id_usuario'] !== $id_usuario) {
     exit();
 }
 
-// Liberar el turno activo en la tabla participacion
 $conn->query("UPDATE participacion SET es_turno_actual = 0 WHERE id_historia = '$id_historia'");
 
-// Si se escribieron menos de 10 palabras, no guardar capítulo vacío y finalizar turno
 if ($cantidad_palabras < 10) {
     alerta("info", "El turno finalizó sin cambios porque no alcanzó el mínimo de 10 palabras.", "../modulos/detalle.html?id=" . $id_historia);
     exit();

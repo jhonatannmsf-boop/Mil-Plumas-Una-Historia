@@ -19,7 +19,6 @@ function cargarDetalle() {
             document.getElementById("detalle-reglas").textContent =
                 "Reglas: Máx. " + historia.limite_palabras + " palabras por turno";
 
-            // Control de disponibilidad del botón Tomar Turno según el estado en participacion
             let btnTurno = document.getElementById("tomar-turno");
             if (btnTurno && historia.turno_actual) {
                 if (historia.turno_actual.activo && !historia.turno_actual.es_mi_turno) {
@@ -73,7 +72,6 @@ function cargarDetalle() {
                 item.querySelector(".is-size-7").textContent = turno.nombre_usuario || "Anónimo";
                 item.querySelector("p").textContent = turno.contenido;
 
-                // Si el usuario actual es el creador de la historia, mostrar el botón de eliminar
                 if (historia.es_creador) {
                     let btnEliminar = document.createElement("button");
                     btnEliminar.type = "button";

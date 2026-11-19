@@ -9,7 +9,6 @@ $id_historia = isset($_GET['id']) ? (int) $_GET['id'] : (isset($_POST['id_histor
 if (isset($_SESSION['id_usuario']) && $id_historia > 0) {
     $id_usuario = (int) $_SESSION['id_usuario'];
 
-    // Liberar el turno del usuario en sesión en la tabla participacion
     $conn->query("UPDATE participacion 
                   SET es_turno_actual = 0 
                   WHERE id_historia = '$id_historia' 
