@@ -1,3 +1,45 @@
+let intervaloCronometro = null;
+
+function iniciarCronometro(segundos) {
+    let tiempoRestante = parseInt(segundos, 10);
+    if (isNaN(tiempoRestante) || tiempoRestante <= 0) {
+        tiempoRestante = 1800; // 30 minutos de reserva
+    }
+
+    let elCronometro = document.getElementById("cronometro-turno");
+    let textarea = document.getElementById("texto_capitulo");
+
+    function actualizarReloj() {
+        if (!elCronometro) return;
+
+        let min = Math.floor(tiempoRestante / 60);
+        let seg = tiempoRestante % 60;
+        elCronometro.textContent = `⏳ ${String(min).padStart(2, '0')}:${String(seg).padStart(2, '0')}`;
+
+        if (tiempoRestante <= 60) {
+            elCronometro.classList.add("tiempo-bajo");
+        } else {
+            elCronometro.classList.remove("tiempo-bajo");
+        }
+
+        if (tiempoRestante <= 0) {
+            clearInterval(intervaloCronometro);
+            // Al acabarse el tiempo, remover required y auto-enviar el formulario
+            if (textarea) {
+                textarea.removeAttribute("required");
+            }
+            document.getElementById("form-editor").submit();
+            return;
+        }
+
+        tiempoRestante--;
+    }
+
+    if (intervaloCronometro) clearInterval(intervaloCronometro);
+    actualizarReloj();
+    intervaloCronometro = setInterval(actualizarReloj, 1000);
+}
+
 function validarEditor(event) {
     let textarea = document.getElementById("texto_capitulo");
     if (!textarea) return false;
@@ -46,21 +88,53 @@ function cargarHistoriaEditor() {
 
     document.getElementById("id_historia").value = idHistoria;
 
-    fetch("../php/detalle.php?id=" + idHistoria)
-        .then(respuesta => respuesta.json())
-        .then(historia => {
+    let btnCancelar = document.getElementById("btn-cancelar-turno");
+    if (btnCancelar) {
+        btnCancelar.onclick = function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "¿Salir y liberar turno?",
+                text: "Cualquier texto no guardado se perderá y otro usuario podrá tomar el turno.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Sí, salir",
+                cancelButtonText: "Seguir escribiendo",
+                confirmButtonColor: "#c0392b"
+            }).then(res => {
+                if (res.isConfirmed) {
+                    window.location.href = "../php/liberarTurno.php?id=" + idHistoria;
+                }
+            });
+        };
+    }
 
-            if (historia.error) {
-                document.getElementById("editor-titulo").textContent = historia.error;
+    // Tomar o reanudar el turno exclusivo en el backend
+    fetch("../php/tomarTurno.php?id=" + idHistoria)
+        .then(respuesta => respuesta.json())
+        .then(data => {
+
+            if (data.error) {
+                Swal.fire({
+                    position: "center",
+                    icon: "warning",
+                    title: "Turno no disponible",
+                    text: data.error,
+                    confirmButtonColor: '#5b8c60'
+                }).then(() => {
+                    window.location.replace("detalle.html?id=" + idHistoria);
+                });
                 return;
             }
 
-            document.getElementById("editor-titulo").textContent = "📖 " + historia.titulo;
-            document.getElementById("texto_capitulo").dataset.limite = historia.limite_palabras;
-            document.getElementById("contador-palabras").textContent = "0 / " + historia.limite_palabras + " palabras";
+            document.getElementById("editor-titulo").textContent = "📖 " + data.titulo;
+            document.getElementById("texto_capitulo").dataset.limite = data.limite_palabras;
+            document.getElementById("contador-palabras").textContent = "0 / " + data.limite_palabras + " palabras";
+
+            // Iniciar cronómetro regresivo con los segundos restantes
+            iniciarCronometro(data.segundos_restantes);
 
         })
-        .catch(error => console.log("Error al cargar la historia:", error));
+        .catch(error => console.log("Error al tomar el turno:", error));
 
 }
 
