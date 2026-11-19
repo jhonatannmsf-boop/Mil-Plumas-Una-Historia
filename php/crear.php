@@ -20,6 +20,8 @@ $primer_capitulo = $_POST['crear_primer_capitulo'];
 $tiempo = $_POST['crear_tiempo'];
 $limite = $_POST['crear_limite'];
 
+// Guardar el usuario de la sesión como creador de la historia
+$id_usuario = (int) $_SESSION['id_usuario'];
 
 $portada = trim($_POST['crear_portada']);
 
@@ -35,6 +37,7 @@ $sql = "INSERT INTO historia (
     titulo,
     genero,
     primer_capitulo,
+    id_usuario_creador,
     tiempo_horas_turno,
     limite_palabras,
     portada
@@ -43,6 +46,7 @@ VALUES (
     '$titulo',
     '$genero',
     '$primer_capitulo',
+    '$id_usuario',
     '$tiempo',
     '$limite',
     '$portada'

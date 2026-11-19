@@ -150,3 +150,13 @@ li, td, th, strong, em, small, blockquote,
         font-size: 32px !important;
     }
 }
+
+.btn-eliminar {
+    background-color: #f8d7da;
+    color: #c0392b;
+    border: none;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
